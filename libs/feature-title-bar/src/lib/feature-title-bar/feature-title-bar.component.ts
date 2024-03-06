@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { UiAuthorDialogComponent } from '@hoa-recipes/ui-author-dialog';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'hoa-recipes-feature-title-bar',
@@ -19,8 +20,11 @@ export class FeatureTitleBarComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(UiAuthorDialogComponent);
 
-    dialogRef.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe(() => {
+        console.log('The dialog was closed');
+      });
   }
 }
