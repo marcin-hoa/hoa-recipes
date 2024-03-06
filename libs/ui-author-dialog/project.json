@@ -1,0 +1,9 @@
+{
+  "name": "ui-author-dialog",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui-author-dialog/src",
+  "prefix": "hoa-recipes",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}
