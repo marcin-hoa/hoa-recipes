@@ -1,31 +1,21 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-  signal,
-} from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { RecipeDto, RecipesRepository } from '@hoa-recipes/data-access-api';
+import { Store } from '@ngrx/store';
+import { selectAllRecipes } from './+state/recipes.selectors';
 
 @Component({
   selector: 'hoa-recipes-feature-recipe-list',
   standalone: true,
-  imports: [MatListModule, MatIcon],
-  providers: [RecipesRepository],
+  imports: [MatListModule, MatIcon, JsonPipe],
+  providers: [Store],
   templateUrl: './feature-recipe-list.component.html',
   styleUrl: './feature-recipe-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeatureRecipeListComponent implements OnInit {
-  protected recipes = signal<RecipeDto[]>([]);
+export class FeatureRecipeListComponent {
+  private store = inject(Store);
 
-  private recipeRepository = inject(RecipesRepository);
-
-  ngOnInit(): void {
-    this.recipeRepository.getAll().subscribe((res) => {
-      this.recipes.set(res);
-    });
-  }
+  recipes = this.store.selectSignal(selectAllRecipes);
 }

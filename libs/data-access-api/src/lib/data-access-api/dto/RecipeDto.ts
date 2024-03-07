@@ -8,6 +8,6 @@ export type CreateRecipeDto = {
 };
 
 export type RecipeDto = CreateRecipeDto & {
-  _id: string;
+  id: string;
   ingredients: IngredientDto[];
 };
