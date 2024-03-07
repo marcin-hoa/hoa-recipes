@@ -1,5 +1,5 @@
 <mat-nav-list role="list">
-  @for (recipe of recipes; track recipe._id) {
+  @for (recipe of recipes(); track recipe._id) {
     <mat-list-item role="listitem">
       <a class="title" matListItemTitle href="{{ recipe._id }}">{{
         recipe.name

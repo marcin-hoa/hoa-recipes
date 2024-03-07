@@ -1,5 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RecipeDto, RecipesRepository } from '@hoa-recipes/data-access-api';
@@ -7,19 +12,20 @@ import { RecipeDto, RecipesRepository } from '@hoa-recipes/data-access-api';
 @Component({
   selector: 'hoa-recipes-feature-recipe-list',
   standalone: true,
-  imports: [CommonModule, MatListModule, MatIcon],
+  imports: [MatListModule, MatIcon],
   providers: [RecipesRepository],
   templateUrl: './feature-recipe-list.component.html',
   styleUrl: './feature-recipe-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureRecipeListComponent implements OnInit {
-  protected recipes: RecipeDto[] = [];
+  protected recipes = signal<RecipeDto[]>([]);
 
-  constructor(private recipeRepository: RecipesRepository) {}
+  private recipeRepository = inject(RecipesRepository);
 
   ngOnInit(): void {
     this.recipeRepository.getAll().subscribe((res) => {
-      this.recipes = res;
+      this.recipes.set(res);
     });
   }
 }

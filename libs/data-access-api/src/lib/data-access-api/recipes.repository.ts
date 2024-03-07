@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RecipeDto } from './dto/RecipeDto';
 
 @Injectable()
 export class RecipesRepository {
-  private baseUrl: string;
+  private baseUrl = '/api/recipes';
 
-  constructor(private client: HttpClient) {
-    this.baseUrl = `/api/recipes`;
-  }
+  private client = inject(HttpClient);
 
   getAll(): Observable<RecipeDto[]> {
     return this.client.get<RecipeDto[]>(`${this.baseUrl}`);
