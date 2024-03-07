@@ -1,7 +1,7 @@
 {
-  "name": "feature-title-bar",
+  "name": "ui-title-bar",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/feature-title-bar/src",
+  "sourceRoot": "libs/ui-title-bar/src",
   "prefix": "hoa-recipes",
   "tags": [],
   "projectType": "library",

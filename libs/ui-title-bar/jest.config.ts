@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'feature-title-bar',
+  displayName: 'ui-title-bar',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/feature-title-bar',
+  coverageDirectory: '../../coverage/libs/ui-title-bar',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

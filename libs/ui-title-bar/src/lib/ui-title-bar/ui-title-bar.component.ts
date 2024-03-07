@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
@@ -8,14 +7,15 @@ import { UiAuthorDialogComponent } from '@hoa-recipes/ui-author-dialog';
 import { take } from 'rxjs';
 
 @Component({
-  selector: 'hoa-recipes-feature-title-bar',
+  selector: 'hoa-recipes-ui-title-bar',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatToolbarModule, MatIcon],
-  templateUrl: './feature-title-bar.component.html',
-  styleUrl: './feature-title-bar.component.scss',
+  imports: [MatButtonModule, MatToolbarModule, MatIcon],
+  templateUrl: './ui-title-bar.component.html',
+  styleUrl: './ui-title-bar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeatureTitleBarComponent {
-  constructor(private dialog: MatDialog) {}
+export class UiTitleBarComponent {
+  private dialog = inject(MatDialog);
 
   openDialog(): void {
     const dialogRef = this.dialog.open(UiAuthorDialogComponent);
