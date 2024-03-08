@@ -4,7 +4,7 @@ import { RecipesEntity } from './recipes.models';
 export const RecipesActions = createActionGroup({
   source: '[Recipes/API]',
   events: {
-    init: emptyProps(),
+    load: emptyProps(),
     'Load Recipes Success': props<{ recipes: RecipesEntity[] }>(),
     'Load Recipes Failure': props<{ error: any }>(),
   },
