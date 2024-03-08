@@ -3,18 +3,18 @@ import { isDevMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
-import { featureRecipeListRoutes } from '@hoa-recipes/feature-recipe-list';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
+import { appRoutes } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   ...appConfig,
   providers: [
     provideAnimations(),
     provideHttpClient(),
-    provideRouter(featureRecipeListRoutes),
+    provideRouter(appRoutes),
     provideStore(),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
