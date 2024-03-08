@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatDialogActions,
@@ -12,7 +11,6 @@ import {
   selector: 'hoa-recipes-ui-author-dialog',
   standalone: true,
   imports: [
-    CommonModule,
     MatButtonModule,
     MatDialogTitle,
     MatDialogContent,
@@ -21,5 +19,6 @@ import {
   ],
   templateUrl: './ui-author-dialog.component.html',
   styleUrl: './ui-author-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiAuthorDialogComponent {}

@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'feature-title-bar',
+  displayName: 'data-access-recipes',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/feature-title-bar',
+  coverageDirectory: '../../coverage/libs/data-access-recipes',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

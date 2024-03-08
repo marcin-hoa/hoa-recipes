@@ -1,0 +1,63 @@
+{
+  "recipes": [
+    {
+      "id": "9f93",
+      "name": "recipe 1",
+      "preparationTimeInMinutes": 25,
+      "description": "string",
+      "ingredients": [
+        {
+          "name": "string",
+          "quantity": "string"
+        },
+        {
+          "name": "string 2",
+          "quantity": "string 2"
+        }
+      ]
+    },
+    {
+      "id": "f948",
+      "name": "recipe 2",
+      "preparationTimeInMinutes": 120,
+      "description": "string",
+      "ingredients": [
+        {
+          "name": "string",
+          "quantity": "string"
+        }
+      ]
+    },
+    {
+      "id": "8f02",
+      "name": "recipe 3",
+      "preparationTimeInMinutes": 45,
+      "description": "string",
+      "ingredients": [
+        {
+          "name": "string",
+          "quantity": "string"
+        }
+      ]
+    },
+    {
+      "id": "2605",
+      "name": "recipe 4",
+      "preparationTimeInMinutes": 10,
+      "description": "string",
+      "ingredients": [
+        {
+          "name": "string",
+          "quantity": "string"
+        }
+      ]
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "b3c0",
+      "name": "Ingredient 1",
+      "quantity": "string"
+    }
+  ]
+}

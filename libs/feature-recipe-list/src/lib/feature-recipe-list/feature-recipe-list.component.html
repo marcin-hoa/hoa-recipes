@@ -1,0 +1,15 @@
+<mat-nav-list role="list" class="list">
+  @for (recipe of recipes(); track recipe.id) {
+    <mat-list-item role="listitem">
+      <a class="title" matListItemTitle href="{{ recipe.id }}">{{
+        recipe.name
+      }}</a>
+      <span matListItemLine class="preparation-time">
+        <mat-icon class="preparation-time__icon" [inline]="true"
+          >schedule</mat-icon
+        >
+        {{ recipe.preparationTimeInMinutes }} min.</span
+      >
+    </mat-list-item>
+  }
+</mat-nav-list>
