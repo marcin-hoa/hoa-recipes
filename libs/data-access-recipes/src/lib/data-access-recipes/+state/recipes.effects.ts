@@ -1,20 +1,17 @@
-import { Injectable, inject } from '@angular/core';
-import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import { inject, makeEnvironmentProviders } from '@angular/core';
+import { Actions, createEffect, ofType, provideEffects } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { RecipesRepository } from '../recipes.repository';
-import * as RecipesActions from './recipes.actions';
+import { RecipesActions } from './recipes.actions';
 
-@Injectable()
-export class RecipesEffects implements OnInitEffects {
-  private actions$ = inject(Actions);
-  private repo = inject(RecipesRepository);
+const load$ = createEffect(
+  (actions$ = inject(Actions)) => {
+    const repo = inject(RecipesRepository);
 
-  init$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(RecipesActions.initRecipes),
+    return actions$.pipe(
+      ofType(RecipesActions.load),
       switchMap(() =>
-        this.repo.getAll().pipe(
+        repo.getAll().pipe(
           map((res) =>
             RecipesActions.loadRecipesSuccess({
               recipes: res,
@@ -26,10 +23,10 @@ export class RecipesEffects implements OnInitEffects {
         console.error('Error', error);
         return of(RecipesActions.loadRecipesFailure({ error }));
       }),
-    ),
-  );
+    );
+  },
+  { functional: true },
+);
 
-  ngrxOnInitEffects(): Action {
-    return RecipesActions.initRecipes();
-  }
-}
+export const provideRecipeEffects = () =>
+  makeEnvironmentProviders([provideEffects({ load$ })]);

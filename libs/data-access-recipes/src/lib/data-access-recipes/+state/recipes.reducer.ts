@@ -1,7 +1,7 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
-import * as RecipesActions from './recipes.actions';
+import { RecipesActions } from './recipes.actions';
 import { RecipesEntity } from './recipes.models';
 
 export const RECIPES_FEATURE_KEY = 'recipes';
@@ -28,9 +28,9 @@ export const initialRecipesState: RecipesState = recipesAdapter.getInitialState(
   },
 );
 
-const reducer = createReducer(
+export const recipesReducer = createReducer<RecipesState>(
   initialRecipesState,
-  on(RecipesActions.initRecipes, (state) => ({
+  on(RecipesActions.load, (state) => ({
     ...state,
     loaded: false,
     error: null,
@@ -43,10 +43,3 @@ const reducer = createReducer(
     error,
   })),
 );
-
-export function recipesReducer(
-  state: RecipesState | undefined,
-  action: Action,
-) {
-  return reducer(state, action);
-}
