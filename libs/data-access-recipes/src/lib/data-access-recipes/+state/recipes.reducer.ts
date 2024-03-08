@@ -36,7 +36,6 @@ const reducer = createReducer(
     error: null,
   })),
   on(RecipesActions.loadRecipesSuccess, (state, { recipes }) => {
-    console.log(recipes);
     return recipesAdapter.setAll(recipes, { ...state, loaded: true });
   }),
   on(RecipesActions.loadRecipesFailure, (state, { error }) => ({

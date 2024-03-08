@@ -24,7 +24,6 @@ export const selectRecipesError = createSelector(
 export const selectAllRecipes = createSelector(
   selectRecipesState,
   (state: RecipesState) => {
-    console.log(selectAll(state));
     return selectAll(state);
   },
 );

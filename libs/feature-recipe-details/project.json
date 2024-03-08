@@ -1,0 +1,9 @@
+{
+  "name": "feature-recipe-details",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/feature-recipe-details/src",
+  "prefix": "hoa-recipes",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}
