@@ -30,7 +30,7 @@ export const initialRecipesState: RecipesState = recipesAdapter.getInitialState(
 
 const reducer = createReducer(
   initialRecipesState,
-  on(RecipesActions.init, (state) => ({
+  on(RecipesActions.load, (state) => ({
     ...state,
     loaded: false,
     error: null,
