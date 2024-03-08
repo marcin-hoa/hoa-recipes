@@ -1,7 +1,7 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
-import { RecipesActions } from './recipes.actions';
+import { RecipesApiActions, RecipesUiActions } from './recipes.actions';
 import { RecipesEntity } from './recipes.models';
 
 export const RECIPES_FEATURE_KEY = 'recipes';
@@ -30,16 +30,20 @@ export const initialRecipesState: RecipesState = recipesAdapter.getInitialState(
 
 export const recipesReducer = createReducer<RecipesState>(
   initialRecipesState,
-  on(RecipesActions.load, (state) => ({
+  on(RecipesApiActions.load, (state) => ({
     ...state,
     loaded: false,
     error: null,
   })),
-  on(RecipesActions.loadRecipesSuccess, (state, { recipes }) => {
+  on(RecipesApiActions.loadRecipesSuccess, (state, { recipes }) => {
     return recipesAdapter.setAll(recipes, { ...state, loaded: true });
   }),
-  on(RecipesActions.loadRecipesFailure, (state, { error }) => ({
+  on(RecipesApiActions.loadRecipesFailure, (state, { error }) => ({
     ...state,
     error,
+  })),
+  on(RecipesUiActions.selectRecipe, (state, { recipeId }) => ({
+    ...state,
+    recipeId,
   })),
 );

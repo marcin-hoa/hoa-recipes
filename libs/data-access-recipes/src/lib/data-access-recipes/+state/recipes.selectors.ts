@@ -33,13 +33,15 @@ export const selectRecipesEntities = createSelector(
   (state: RecipesState) => selectEntities(state),
 );
 
-export const selectSelectedId = createSelector(
+export const setSelectedRecipeId = createSelector(
   selectRecipesState,
   (state: RecipesState) => state.selectedId,
 );
 
-export const selectEntity = createSelector(
+export const getSelectedRecipe = createSelector(
   selectRecipesEntities,
-  selectSelectedId,
-  (entities, selectedId) => (selectedId ? entities[selectedId] : undefined),
+  setSelectedRecipeId,
+  (entities, selectedId) => {
+    return selectedId ? entities[selectedId] : undefined;
+  },
 );

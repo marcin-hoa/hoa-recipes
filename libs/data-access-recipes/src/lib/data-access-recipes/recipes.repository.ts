@@ -9,7 +9,11 @@ export class RecipesRepository {
 
   private client = inject(HttpClient);
 
-  getAll(): Observable<RecipeDto[]> {
+  findAll(): Observable<RecipeDto[]> {
     return this.client.get<RecipeDto[]>(`${this.baseUrl}`);
+  }
+
+  findOne(id: string): Observable<RecipeDto> {
+    return this.client.get<RecipeDto>(`${this.baseUrl}/${id}`);
   }
 }

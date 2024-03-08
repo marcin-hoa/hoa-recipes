@@ -5,7 +5,6 @@ import {
   provideRecipeEffects,
   recipesReducer,
 } from '@hoa-recipes/data-access-recipes';
-import { FeatureRecipeDetailsComponent } from '@hoa-recipes/feature-recipe-details';
 import { provideState } from '@ngrx/store';
 
 export const featureRecipeListRoutes: Route[] = [
@@ -22,7 +21,10 @@ export const featureRecipeListRoutes: Route[] = [
     ],
     children: [
       {
-        loadComponent: () => FeatureRecipeDetailsComponent,
+        loadComponent: () =>
+          import('@hoa-recipes/feature-recipe-details').then(
+            (c) => c.FeatureRecipeDetailsComponent,
+          ),
         path: ':id',
       },
     ],
