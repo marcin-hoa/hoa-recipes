@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { RecipesRepository } from '@hoa-recipes/data-access-api';
 import { Actions, OnInitEffects, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { catchError, map, of, switchMap } from 'rxjs';
+import { RecipesRepository } from '../recipes.repository';
 import * as RecipesActions from './recipes.actions';
 
 @Injectable()

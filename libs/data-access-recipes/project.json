@@ -1,7 +1,7 @@
 {
-  "name": "data-access-api",
+  "name": "data-access-recipes",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/data-access-api/src",
+  "sourceRoot": "libs/data-access-recipes/src",
   "prefix": "hoa-recipes",
   "tags": [],
   "projectType": "library",

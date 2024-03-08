@@ -1,9 +1,9 @@
 import { Route } from '@angular/router';
-import { RecipesRepository } from '@hoa-recipes/data-access-api';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
-import { RecipesEffects } from './+state/recipes.effects';
-import * as fromRecipes from './+state/recipes.reducer';
+import { RecipesRepository } from 'libs/data-access-recipes/src';
+import { RecipesEffects } from '../../../../data-access-recipes/src/lib/data-access-recipes/+state/recipes.effects';
+import * as fromRecipes from '../../../../data-access-recipes/src/lib/data-access-recipes/+state/recipes.reducer';
 import { FeatureRecipeListComponent } from './feature-recipe-list.component';
 
 export const featureRecipeListRoutes: Route[] = [

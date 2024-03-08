@@ -2,8 +2,8 @@ import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { selectAllRecipes } from '@hoa-recipes/data-access-recipes';
 import { Store } from '@ngrx/store';
-import { selectAllRecipes } from './+state/recipes.selectors';
 
 @Component({
   selector: 'hoa-recipes-feature-recipe-list',

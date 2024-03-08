@@ -4,5 +4,5 @@ export type CreateIngredientDto = {
 };
 
 export type IngredientDto = CreateIngredientDto & {
-  _id: string;
+  id: string;
 };
