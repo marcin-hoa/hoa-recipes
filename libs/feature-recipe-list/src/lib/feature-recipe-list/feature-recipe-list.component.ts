@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,7 @@ import { Store } from '@ngrx/store';
 @Component({
   selector: 'hoa-recipes-feature-recipe-list',
   standalone: true,
-  imports: [MatListModule, MatIcon, JsonPipe, RouterOutlet, RouterModule],
+  imports: [MatListModule, MatIcon, RouterOutlet, RouterModule],
   providers: [Store],
   templateUrl: './feature-recipe-list.component.html',
   styleUrl: './feature-recipe-list.component.scss',

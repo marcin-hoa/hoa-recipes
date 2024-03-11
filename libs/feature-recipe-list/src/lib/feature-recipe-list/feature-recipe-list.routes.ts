@@ -14,11 +14,7 @@ export const featureRecipeRoutes: Route[] = [
         (c) => c.FeatureRecipeListComponent,
       ),
     path: '',
-    providers: [
-      provideState(RECIPES_FEATURE_KEY, recipesReducer),
-      provideRecipeEffects(),
-      RecipesRepository,
-    ],
+    providers: [],
     children: [
       {
         loadComponent: () =>
@@ -26,6 +22,11 @@ export const featureRecipeRoutes: Route[] = [
             (c) => c.FeatureRecipeDetailsComponent,
           ),
         path: ':id',
+        providers: [
+          provideState(RECIPES_FEATURE_KEY, recipesReducer),
+          provideRecipeEffects(),
+          RecipesRepository,
+        ],
       },
     ],
   },

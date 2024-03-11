@@ -3,7 +3,13 @@ import { isDevMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
-import { provideStore } from '@ngrx/store';
+import {
+  RECIPES_FEATURE_KEY,
+  RecipesRepository,
+  provideRecipeEffects,
+  recipesReducer,
+} from '@hoa-recipes/data-access-recipes';
+import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
@@ -16,6 +22,9 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     provideRouter(appRoutes),
     provideStore(),
+    provideState(RECIPES_FEATURE_KEY, recipesReducer),
+    provideRecipeEffects(),
+    RecipesRepository,
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode

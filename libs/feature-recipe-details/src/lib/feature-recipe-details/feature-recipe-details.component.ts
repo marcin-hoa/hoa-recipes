@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
   RecipesUiActions,
@@ -11,7 +12,7 @@ import { distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'hoa-recipes-feature-recipe-details',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, MatCardModule],
   templateUrl: './feature-recipe-details.component.html',
   styleUrl: './feature-recipe-details.component.scss',
 })
