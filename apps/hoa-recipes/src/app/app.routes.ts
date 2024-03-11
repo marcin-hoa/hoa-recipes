@@ -1,9 +1,8 @@
 import { Route } from '@angular/router';
-import { featureRecipeListRoutes } from '@hoa-recipes/feature-recipe-list';
+import { featureRecipeRoutes } from '@hoa-recipes/feature-recipe-list';
 
 export const appRoutes: Route[] = [
-  ...featureRecipeListRoutes,
-  // ...featureRecipeDetailsRoutes,
+  ...featureRecipeRoutes,
   {
     path: '',
     redirectTo: '',

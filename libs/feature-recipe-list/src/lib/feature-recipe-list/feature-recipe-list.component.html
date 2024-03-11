@@ -1,20 +1,22 @@
-<mat-nav-list role="list" class="list">
-  @for (recipe of recipes(); track recipe.id) {
-    <mat-list-item role="listitem">
-      <a
-        class="title"
-        matListItemTitle
-        [routerLink]="recipe.id"
-        (click)="selectRecipe(recipe.id)"
-        >{{ recipe.name }}
-        <span matListItemLine class="preparation-time">
-          <mat-icon class="preparation-time__icon" [inline]="true"
-            >schedule</mat-icon
-          >
-          {{ recipe.preparationTimeInMinutes }} min.</span
-        ></a
-      >
-    </mat-list-item>
-  }
-</mat-nav-list>
-<router-outlet></router-outlet>
+<main>
+  <mat-nav-list role="list" class="list">
+    @for (recipe of recipes(); track recipe.id) {
+      <mat-list-item role="listitem">
+        <a
+          class="title"
+          matListItemTitle
+          [routerLink]="recipe.id"
+          (click)="selectRecipe(recipe.id)"
+          >{{ recipe.name }}
+          <span matListItemLine class="preparation-time">
+            <mat-icon class="preparation-time__icon" [inline]="true"
+              >schedule</mat-icon
+            >
+            {{ recipe.preparationTimeInMinutes }} min.</span
+          ></a
+        >
+      </mat-list-item>
+    }
+  </mat-nav-list>
+  <router-outlet></router-outlet>
+</main>

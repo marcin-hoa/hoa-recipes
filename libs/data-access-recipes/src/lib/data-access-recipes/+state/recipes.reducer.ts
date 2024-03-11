@@ -42,8 +42,8 @@ export const recipesReducer = createReducer<RecipesState>(
     ...state,
     error,
   })),
-  on(RecipesUiActions.selectRecipe, (state, { recipeId }) => ({
+  on(RecipesUiActions.selectRecipe, (state, { selectedId }) => ({
     ...state,
-    recipeId,
+    selectedId,
   })),
 );

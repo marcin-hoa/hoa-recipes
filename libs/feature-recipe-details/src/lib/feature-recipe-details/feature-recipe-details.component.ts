@@ -1,36 +1,32 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, Signal, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
-  RecipesEntity,
+  RecipesUiActions,
   getSelectedRecipe,
 } from '@hoa-recipes/data-access-recipes';
 import { Store } from '@ngrx/store';
+import { distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'hoa-recipes-feature-recipe-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [RouterModule],
   templateUrl: './feature-recipe-details.component.html',
   styleUrl: './feature-recipe-details.component.scss',
 })
-export class FeatureRecipeDetailsComponent implements OnInit {
+export class FeatureRecipeDetailsComponent {
   private store = inject(Store);
   private route = inject(ActivatedRoute);
 
-  recipe!: Signal<RecipesEntity | undefined>;
-
-  ngOnInit(): void {
-    // this.route.params.subscribe((r) => {
-    //   console.log(r);
-    // });
-
-    this.store.subscribe((s) => {
-      const recipeId: string = s.recipes.recipeId;
-      console.log(recipeId);
-      this.recipe = this.store.selectSignal(getSelectedRecipe);
+  private _ = this.route.paramMap
+    .pipe(distinctUntilChanged(), takeUntilDestroyed())
+    .subscribe((r) => {
+      const recipeId = r.get('id');
+      this.store.dispatch(
+        RecipesUiActions.selectRecipe({ selectedId: recipeId as string }),
+      );
     });
-  }
 
-  // selectSignal(getSelectedRecipe);
+  recipe = this.store.selectSignal(getSelectedRecipe);
 }

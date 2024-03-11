@@ -7,7 +7,7 @@ import {
 } from '@hoa-recipes/data-access-recipes';
 import { provideState } from '@ngrx/store';
 
-export const featureRecipeListRoutes: Route[] = [
+export const featureRecipeRoutes: Route[] = [
   {
     loadComponent: () =>
       import('./feature-recipe-list.component').then(

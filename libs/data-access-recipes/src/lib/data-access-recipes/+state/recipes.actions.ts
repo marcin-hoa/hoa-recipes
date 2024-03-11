@@ -15,6 +15,6 @@ export const RecipesApiActions = createActionGroup({
 export const RecipesUiActions = createActionGroup({
   source: 'Recipes/UI',
   events: {
-    'Select Recipe': props<{ recipeId: string }>(),
+    'Select Recipe': props<{ selectedId: string }>(),
   },
 });
