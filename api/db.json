@@ -7,12 +7,12 @@
       "description": "string",
       "ingredients": [
         {
-          "name": "string",
-          "quantity": "string"
+          "name": "ingredient 1",
+          "quantity": "10g"
         },
         {
-          "name": "string 2",
-          "quantity": "string 2"
+          "name": "ingredient 2",
+          "quantity": "50ml"
         }
       ]
     },
@@ -23,8 +23,12 @@
       "description": "string",
       "ingredients": [
         {
-          "name": "string",
-          "quantity": "string"
+          "name": "ingredient 1",
+          "quantity": "20g"
+        },
+        {
+          "name": "ingredient 2",
+          "quantity": "1kg"
         }
       ]
     },
@@ -35,8 +39,12 @@
       "description": "string",
       "ingredients": [
         {
-          "name": "string",
-          "quantity": "string"
+          "name": "ingredient 1",
+          "quantity": "15ml"
+        },
+        {
+          "name": "ingredient 2",
+          "quantity": "25g"
         }
       ]
     },
@@ -47,17 +55,14 @@
       "description": "string",
       "ingredients": [
         {
-          "name": "string",
-          "quantity": "string"
+          "name": "ingredient 1",
+          "quantity": "500g"
+        },
+        {
+          "name": "ingredient 2",
+          "quantity": "1l"
         }
       ]
-    }
-  ],
-  "ingredients": [
-    {
-      "id": "b3c0",
-      "name": "Ingredient 1",
-      "quantity": "string"
     }
   ]
 }
