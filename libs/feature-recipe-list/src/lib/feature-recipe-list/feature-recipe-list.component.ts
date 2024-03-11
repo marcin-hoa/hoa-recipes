@@ -12,12 +12,19 @@ import {
   RecipesUiActions,
   selectAllRecipes,
 } from '@hoa-recipes/data-access-recipes';
+import { UiRecipesPreparationTimeComponent } from '@hoa-recipes/ui-recipes-preparation-time';
 import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'hoa-recipes-feature-recipe-list',
   standalone: true,
-  imports: [MatListModule, MatIcon, RouterOutlet, RouterModule],
+  imports: [
+    MatListModule,
+    MatIcon,
+    RouterOutlet,
+    RouterModule,
+    UiRecipesPreparationTimeComponent,
+  ],
   providers: [Store],
   templateUrl: './feature-recipe-list.component.html',
   styleUrl: './feature-recipe-list.component.scss',

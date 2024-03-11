@@ -8,13 +8,10 @@
           [routerLink]="recipe.id"
           (click)="selectRecipe(recipe.id)"
           >{{ recipe.name }}
-          <span matListItemLine class="preparation-time">
-            <mat-icon class="preparation-time__icon" [inline]="true"
-              >schedule</mat-icon
-            >
-            {{ recipe.preparationTimeInMinutes }} min.</span
-          ></a
-        >
+          <hoa-recipes-ui-recipes-preparation-time
+            matListItemLine
+            [preparationTime]="recipe.preparationTimeInMinutes"
+        /></a>
       </mat-list-item>
     }
   </mat-nav-list>

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
@@ -9,7 +8,6 @@ import { UiTitleBarComponent } from '@hoa-recipes/ui-title-bar';
   selector: 'hoa-recipes-feature-recipe-shell',
   standalone: true,
   imports: [
-    CommonModule,
     MatSidenavModule,
     UiTitleBarComponent,
     FeatureRecipeListComponent,

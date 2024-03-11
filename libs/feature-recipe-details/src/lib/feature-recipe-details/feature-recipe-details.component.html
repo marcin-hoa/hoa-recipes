@@ -2,4 +2,10 @@
   <mat-card-header>
     <h1>{{ recipe()?.name }}</h1>
   </mat-card-header>
+  <mat-card-content>
+    <hoa-recipes-ui-recipes-preparation-time
+      [preparationTime]="recipe()?.preparationTimeInMinutes"
+      [formatted]="true"
+    />
+  </mat-card-content>
 </mat-card>

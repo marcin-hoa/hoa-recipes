@@ -1,10 +1,15 @@
 .recipe-shell {
   display: flex;
   flex-direction: row;
+  // document height - title-bar
   height: calc(100vh - 64px);
   width: 100%;
-}
 
-.recipe-shell-container {
-  width: 100%;
+  &__container {
+    width: 100%;
+  }
+
+  &__content {
+    padding: 1em;
+  }
 }
