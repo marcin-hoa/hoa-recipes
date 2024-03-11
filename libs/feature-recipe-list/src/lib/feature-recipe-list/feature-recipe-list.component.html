@@ -1,18 +1,16 @@
-<main>
-  <mat-nav-list role="list" class="list">
-    @for (recipe of recipes(); track recipe.id) {
-      <mat-list-item role="listitem">
-        <a
-          class="title"
-          matListItemTitle
-          [routerLink]="recipe.id"
-          (click)="selectRecipe(recipe.id)"
-          >{{ recipe.name }}
-          <hoa-recipes-ui-recipes-preparation-time
-            matListItemLine
-            [preparationTime]="recipe.preparationTimeInMinutes"
-        /></a>
-      </mat-list-item>
-    }
-  </mat-nav-list>
-</main>
+<mat-nav-list role="list" class="list">
+  @for (recipe of recipes(); track recipe.id) {
+    <mat-list-item role="listitem">
+      <a
+        class="title"
+        matListItemTitle
+        [routerLink]="recipe.id"
+        (click)="selectRecipe(recipe.id)"
+        >{{ recipe.name }}
+        <hoa-recipes-ui-recipes-preparation-time
+          matListItemLine
+          [preparationTime]="recipe.preparationTimeInMinutes"
+      /></a>
+    </mat-list-item>
+  }
+</mat-nav-list>
