@@ -21,6 +21,9 @@
       "@hoa-recipes/feature-recipe-details": [
         "libs/feature-recipe-details/src/index.ts"
       ],
+      "@hoa-recipes/feature-recipe-edit-dialog": [
+        "libs/feature-recipe-edit-dialog/src/index.ts"
+      ],
       "@hoa-recipes/feature-recipe-list": [
         "libs/feature-recipe-list/src/index.ts"
       ],

@@ -3,6 +3,22 @@
 <main class="recipe-shell">
   <mat-drawer-container class="recipe-shell__container" autosize>
     <mat-drawer class="recipe-shell__list" mode="side" opened="true">
+      <div class="recipe-shell__controls controls">
+        <form class="controls__search-form">
+          <mat-form-field class="controls__search-input">
+            <mat-label>Search - To be done</mat-label>
+            <input matInput placeholder="Recipe / ingredient name" />
+          </mat-form-field>
+        </form>
+        <button
+          mat-icon-button
+          color="primary"
+          aria-label="Create new recipe button"
+          (click)="openCreateRecipeDialog()"
+        >
+          <mat-icon>post_add</mat-icon>
+        </button>
+      </div>
       <hoa-recipes-feature-recipe-list />
     </mat-drawer>
     <div class="recipe-shell__content">
