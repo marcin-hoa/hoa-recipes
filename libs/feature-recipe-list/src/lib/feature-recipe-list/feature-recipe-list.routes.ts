@@ -1,11 +1,4 @@
 import { Route } from '@angular/router';
-import {
-  RECIPES_FEATURE_KEY,
-  RecipesRepository,
-  provideRecipeEffects,
-  recipesReducer,
-} from '@hoa-recipes/data-access-recipes';
-import { provideState } from '@ngrx/store';
 
 export const featureRecipeRoutes: Route[] = [
   {
@@ -22,11 +15,6 @@ export const featureRecipeRoutes: Route[] = [
             (c) => c.FeatureRecipeDetailsComponent,
           ),
         path: ':id',
-        providers: [
-          provideState(RECIPES_FEATURE_KEY, recipesReducer),
-          provideRecipeEffects(),
-          RecipesRepository,
-        ],
       },
     ],
   },

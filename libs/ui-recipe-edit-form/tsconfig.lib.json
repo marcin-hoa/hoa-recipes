@@ -13,8 +13,5 @@
     "jest.config.ts",
     "src/**/*.test.ts"
   ],
-  "include": [
-    "src/**/*.ts",
-    "../ui-recipe-edit-form/src/lib/ui-recipe-edit-form/recipe-form.presenter.ts"
-  ]
+  "include": ["src/**/*.ts"]
 }

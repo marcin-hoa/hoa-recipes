@@ -1,0 +1,9 @@
+{
+  "name": "ui-recipe-edit-form",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui-recipe-edit-form/src",
+  "prefix": "hoa-recipes",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}

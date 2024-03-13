@@ -7,8 +7,6 @@ export const RecipesApiActions = createActionGroup({
     load: emptyProps(),
     'Load Recipes Success': props<{ recipes: RecipesEntity[] }>(),
     'Load Recipes Failure': props<{ error: string }>(),
-    'Load Recipe Success': props<{ recipe: RecipesEntity }>(),
-    'Load Recipe Failure': props<{ error: string }>(),
   },
 });
 

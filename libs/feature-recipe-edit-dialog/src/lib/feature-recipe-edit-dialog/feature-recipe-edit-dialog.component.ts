@@ -1,5 +1,9 @@
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -8,10 +12,10 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatStepperModule } from '@angular/material/stepper';
-import { FeatureRecipeFormService } from './feature-recipe-form.service';
+import {
+  UiRecipeEditFormComponent,
+  UiRecipeFormPresenter,
+} from '@hoa-recipes/ui-recipe-edit-form';
 
 @Component({
   selector: 'hoa-recipes-feature-recipe-edit-dialog',
@@ -22,30 +26,24 @@ import { FeatureRecipeFormService } from './feature-recipe-form.service';
     MatDialogContent,
     MatDialogTitle,
     MatButtonModule,
-    MatStepperModule,
-    MatInputModule,
-    MatFormFieldModule,
+    UiRecipeEditFormComponent,
     ReactiveFormsModule,
   ],
-  providers: [
-    {
-      provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: { showError: true },
-    },
-    FeatureRecipeFormService,
-  ],
+  providers: [UiRecipeFormPresenter],
   templateUrl: './feature-recipe-edit-dialog.component.html',
   styleUrl: './feature-recipe-edit-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeatureRecipeEditDialogComponent {
-  formService = inject(FeatureRecipeFormService);
+export class FeatureRecipeEditDialogComponent implements AfterContentInit {
+  formService = inject(UiRecipeFormPresenter);
 
-  addIngredient(): void {
-    this.formService.addIngredientFormControl();
+  createRecipe(): void {
+    console.log(this.formService.form.value);
   }
 
-  logForm(): void {
-    console.log(this.formService.form.value);
+  ngAfterContentInit(): void {
+    this.formService.form.valueChanges.subscribe(() => {
+      console.log(this.formService.form.valid);
+    });
   }
 }
