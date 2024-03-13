@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
@@ -22,6 +22,7 @@ import { distinctUntilChanged } from 'rxjs';
   ],
   templateUrl: './feature-recipe-details.component.html',
   styleUrl: './feature-recipe-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureRecipeDetailsComponent {
   private store = inject(Store);

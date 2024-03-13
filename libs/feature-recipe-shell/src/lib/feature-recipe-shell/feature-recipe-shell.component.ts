@@ -26,7 +26,6 @@ import { take } from 'rxjs';
     MatIconModule,
     MatButtonModule,
   ],
-  providers: [],
   templateUrl: './feature-recipe-shell.component.html',
   styleUrl: './feature-recipe-shell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
