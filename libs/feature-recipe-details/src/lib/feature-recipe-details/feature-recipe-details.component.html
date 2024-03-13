@@ -1,0 +1,20 @@
+<mat-card class="recipe-card">
+  <mat-card-header>
+    <h1>{{ recipe()?.name }}</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <hoa-recipes-ui-recipes-preparation-time
+      [preparationTime]="recipe()?.preparationTimeInMinutes"
+      [formatted]="true"
+    />
+    <h3 class="recipe-card__ingredient-title">Ingredients</h3>
+    <mat-list role="list" class="list">
+      @for (ingredient of recipe()?.ingredients; track ingredient.id) {
+        <mat-list-item role="listitem">
+          <span class="title" matListItemTitle>{{ ingredient.name }} </span>
+          <span matListItemLine>{{ ingredient.quantity }}</span>
+        </mat-list-item>
+      }
+    </mat-list>
+  </mat-card-content>
+</mat-card>

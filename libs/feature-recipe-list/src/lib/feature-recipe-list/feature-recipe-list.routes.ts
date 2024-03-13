@@ -7,17 +7,27 @@ import {
 } from '@hoa-recipes/data-access-recipes';
 import { provideState } from '@ngrx/store';
 
-export const featureRecipeListRoutes: Route[] = [
+export const featureRecipeRoutes: Route[] = [
   {
     loadComponent: () =>
       import('./feature-recipe-list.component').then(
         (c) => c.FeatureRecipeListComponent,
       ),
     path: '',
-    providers: [
-      provideState(RECIPES_FEATURE_KEY, recipesReducer),
-      provideRecipeEffects(),
-      RecipesRepository,
+    providers: [],
+    children: [
+      {
+        loadComponent: () =>
+          import('@hoa-recipes/feature-recipe-details').then(
+            (c) => c.FeatureRecipeDetailsComponent,
+          ),
+        path: ':id',
+        providers: [
+          provideState(RECIPES_FEATURE_KEY, recipesReducer),
+          provideRecipeEffects(),
+          RecipesRepository,
+        ],
+      },
     ],
   },
 ];

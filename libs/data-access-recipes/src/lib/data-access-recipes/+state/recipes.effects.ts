@@ -2,18 +2,18 @@ import { inject, makeEnvironmentProviders } from '@angular/core';
 import { Actions, createEffect, ofType, provideEffects } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { RecipesRepository } from '../recipes.repository';
-import { RecipesActions } from './recipes.actions';
+import { RecipesApiActions } from './recipes.actions';
 
-const load$ = createEffect(
+const loadAll$ = createEffect(
   (actions$ = inject(Actions)) => {
     const repo = inject(RecipesRepository);
 
     return actions$.pipe(
-      ofType(RecipesActions.load),
+      ofType(RecipesApiActions.load),
       switchMap(() =>
-        repo.getAll().pipe(
+        repo.findAll().pipe(
           map((res) =>
-            RecipesActions.loadRecipesSuccess({
+            RecipesApiActions.loadRecipesSuccess({
               recipes: res,
             }),
           ),
@@ -21,7 +21,7 @@ const load$ = createEffect(
       ),
       catchError((error) => {
         console.error('Error', error);
-        return of(RecipesActions.loadRecipesFailure({ error }));
+        return of(RecipesApiActions.loadRecipesFailure({ error }));
       }),
     );
   },
@@ -29,4 +29,4 @@ const load$ = createEffect(
 );
 
 export const provideRecipeEffects = () =>
-  makeEnvironmentProviders([provideEffects({ load$ })]);
+  makeEnvironmentProviders([provideEffects({ loadAll$ })]);

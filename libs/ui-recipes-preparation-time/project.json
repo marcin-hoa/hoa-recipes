@@ -1,0 +1,9 @@
+{
+  "name": "ui-recipes-preparation-time",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui-recipes-preparation-time/src",
+  "prefix": "hoa-recipes",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}

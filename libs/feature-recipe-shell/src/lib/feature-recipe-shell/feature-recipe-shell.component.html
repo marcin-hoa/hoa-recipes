@@ -1,0 +1,12 @@
+<hoa-recipes-ui-title-bar />
+
+<main class="recipe-shell">
+  <mat-drawer-container class="recipe-shell__container" autosize>
+    <mat-drawer class="recipe-shell__list" mode="side" opened="true">
+      <hoa-recipes-feature-recipe-list />
+    </mat-drawer>
+    <div class="recipe-shell__content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</main>
