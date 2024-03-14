@@ -1,8 +1,6 @@
 export type CreateIngredientDto = {
-  name: string;
-  quantity: string;
+  ingredientName: string;
+  ingredientQuantity: string;
 };
 
-export type IngredientDto = CreateIngredientDto & {
-  id: string;
-};
+export type IngredientDto = CreateIngredientDto;

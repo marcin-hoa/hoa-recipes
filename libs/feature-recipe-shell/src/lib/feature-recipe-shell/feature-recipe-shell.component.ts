@@ -10,7 +10,6 @@ import { RouterModule } from '@angular/router';
 import { FeatureRecipeEditDialogComponent } from '@hoa-recipes/feature-recipe-edit-dialog';
 import { FeatureRecipeListComponent } from '@hoa-recipes/feature-recipe-list';
 import { UiTitleBarComponent } from '@hoa-recipes/ui-title-bar';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'hoa-recipes-feature-recipe-shell',
@@ -34,13 +33,6 @@ export class FeatureRecipeShellComponent {
   private dialog = inject(MatDialog);
 
   openCreateRecipeDialog(): void {
-    const dialogRef = this.dialog.open(FeatureRecipeEditDialogComponent);
-
-    dialogRef
-      .afterClosed()
-      .pipe(take(1))
-      .subscribe(() => {
-        console.log('The dialog was closed');
-      });
+    this.dialog.open(FeatureRecipeEditDialogComponent);
   }
 }

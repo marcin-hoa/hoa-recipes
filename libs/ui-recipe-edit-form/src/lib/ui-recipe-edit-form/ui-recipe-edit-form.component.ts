@@ -30,13 +30,13 @@ import { UiRecipeFormPresenter } from './recipe-form.presenter';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiRecipeEditFormComponent {
-  formService = inject(UiRecipeFormPresenter);
+  formPresenter = inject(UiRecipeFormPresenter);
 
   addIngredient(): void {
-    this.formService.addIngredientFormControl();
+    this.formPresenter.addIngredientFormControl();
   }
 
   removeIngredient(index: number): void {
-    this.formService.removeIngredientFormControl(index);
+    this.formPresenter.removeIngredientFormControl(index);
   }
 }

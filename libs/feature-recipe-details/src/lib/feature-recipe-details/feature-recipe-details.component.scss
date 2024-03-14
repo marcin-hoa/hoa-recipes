@@ -3,6 +3,14 @@
   min-height: 500px;
   margin: auto;
 
+  &__header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
   &__ingredient-title {
     padding-top: 1em;
   }

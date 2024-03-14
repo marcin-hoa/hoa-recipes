@@ -30,20 +30,37 @@ export const initialRecipesState: RecipesState = recipesAdapter.getInitialState(
 
 export const recipesReducer = createReducer<RecipesState>(
   initialRecipesState,
-  on(RecipesApiActions.load, (state) => ({
+  on(RecipesUiActions.load, (state) => ({
     ...state,
     loaded: false,
     error: null,
   })),
+
   on(RecipesApiActions.loadRecipesSuccess, (state, { recipes }) => {
     return recipesAdapter.setAll(recipes, { ...state, loaded: true });
   }),
+
   on(RecipesApiActions.loadRecipesFailure, (state, { error }) => ({
     ...state,
     error,
   })),
+
   on(RecipesUiActions.selectRecipe, (state, { selectedId }) => ({
     ...state,
     selectedId,
   })),
+
+  on(RecipesApiActions.createRecipeSuccess, (state, { createdRecipe }) => {
+    return recipesAdapter.addOne(createdRecipe, {
+      ...state,
+      selectedId: createdRecipe.id,
+    });
+  }),
+
+  on(RecipesApiActions.editRecipeSuccess, (state, { updatedRecipe }) => {
+    return recipesAdapter.updateOne(
+      { id: updatedRecipe.id, changes: updatedRecipe },
+      state,
+    );
+  }),
 );

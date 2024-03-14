@@ -1,18 +1,25 @@
 <mat-card class="recipe-card">
   <mat-card-header>
-    <h1>{{ recipe()?.name }}</h1>
+    <div class="recipe-card__header-container">
+      <h1>{{ recipe()?.recipeName }}</h1>
+      <button mat-icon-button (click)="openEditDialog()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
   </mat-card-header>
   <mat-card-content>
     <hoa-recipes-ui-recipes-preparation-time
-      [preparationTime]="recipe()?.preparationTimeInMinutes"
+      [preparationTime]="recipe()?.preparationTime"
       [formatted]="true"
     />
     <h3 class="recipe-card__ingredient-title">Ingredients</h3>
     <mat-list role="list" class="list">
-      @for (ingredient of recipe()?.ingredients; track ingredient.id) {
+      @for (ingredient of recipe()?.ingredients; track ingredient) {
         <mat-list-item role="listitem">
-          <span class="title" matListItemTitle>{{ ingredient.name }} </span>
-          <span matListItemLine>{{ ingredient.quantity }}</span>
+          <span class="title" matListItemTitle
+            >{{ ingredient.ingredientName }}
+          </span>
+          <span matListItemLine>{{ ingredient.ingredientQuantity }}</span>
         </mat-list-item>
       }
     </mat-list>

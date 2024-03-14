@@ -1,8 +1,8 @@
 <mat-stepper orientation="vertical" [linear]="false" #stepper>
-  <form [formGroup]="formService.form" class="form">
+  <form [formGroup]="formPresenter.form" class="form">
     <!-- RECIPE NAME -->
     <mat-step
-      [stepControl]="formService.recipeNameControl"
+      [stepControl]="formPresenter.recipeNameControl"
       errorMessage="Recipe name is required."
       label="Recipe name"
     >
@@ -21,7 +21,7 @@
 
     <!-- RECIPE DESCRIPTION -->
     <mat-step
-      [stepControl]="formService.recipeDescriptionControl"
+      [stepControl]="formPresenter.recipeDescriptionControl"
       label="Description (optional)"
     >
       <div class="form__mat-step-content">
@@ -38,7 +38,7 @@
 
     <!-- RECIPE PREPARATION TIME -->
     <mat-step
-      [stepControl]="formService.recipePreparationTimeControl"
+      [stepControl]="formPresenter.recipePreparationTimeControl"
       errorMessage="Recipe preparation time is required."
       label="Preparation time"
     >
@@ -57,13 +57,13 @@
 
     <!-- RECIPE INGREDIENTS -->
     <mat-step
-      [stepControl]="formService.ingredientsFormArray"
+      [stepControl]="formPresenter.ingredientsFormArray"
       errorMessage="List of ingredients contains errors"
       label="Ingredients"
     >
       <ng-container formArrayName="ingredients">
         @for (
-          ingredientFormGroup of formService.ingredientsFormArray.controls;
+          ingredientFormGroup of formPresenter.ingredientsFormArray.controls;
           track ingredientFormGroup;
           let i = $index
         ) {

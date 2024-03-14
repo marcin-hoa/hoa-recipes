@@ -1,5 +1,7 @@
-<form [formGroup]="formService.form">
-  <h2 mat-dialog-title>Create recipe</h2>
+<form [formGroup]="formPresenter.form">
+  <h2 mat-dialog-title>
+    {{ isEditMode ? 'Edit recipe ' + dialogData?.recipeName : 'Create recipe' }}
+  </h2>
   <mat-dialog-content class="recipe-dialog">
     <hoa-recipes-ui-recipe-edit-form />
   </mat-dialog-content>
@@ -9,10 +11,10 @@
       <button
         mat-flat-button
         color="primary"
-        [disabled]="!formService.form.valid"
-        (click)="createRecipe()"
+        [disabled]="!formPresenter.form.valid"
+        (click)="confirm()"
       >
-        Create
+        {{ isEditMode ? 'Update' : 'Create' }}
       </button>
     </div>
   </mat-dialog-actions>
