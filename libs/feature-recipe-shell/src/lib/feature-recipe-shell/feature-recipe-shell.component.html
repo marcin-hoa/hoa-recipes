@@ -4,15 +4,7 @@
   <mat-drawer-container class="recipe-shell__container" autosize>
     <mat-drawer class="recipe-shell__list" mode="side" opened="true">
       <div class="recipe-shell__controls controls">
-        <form class="controls__search-form">
-          <mat-form-field
-            class="controls__search-input"
-            subscriptSizing="dynamic"
-          >
-            <mat-label>Search - To be done</mat-label>
-            <input matInput placeholder="Recipe / ingredient name" />
-          </mat-form-field>
-        </form>
+        <hoa-recipes-feature-recipe-search />
         <button
           mat-mini-fab
           color="primary"
