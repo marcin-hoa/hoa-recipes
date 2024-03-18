@@ -2,65 +2,133 @@
   "recipes": [
     {
       "id": "9f93",
-      "name": "recipe 1",
-      "preparationTimeInMinutes": 25,
+      "recipeName": "recipe 1",
+      "preparationTime": 25,
       "description": "string",
       "ingredients": [
         {
-          "name": "ingredient 1",
-          "quantity": "10g"
+          "ingredientName": "ingredient 1",
+          "ingredientQuantity": "10g"
         },
         {
-          "name": "ingredient 2",
-          "quantity": "50ml"
+          "ingredientName": "ingredient 2",
+          "ingredientQuantity": "50ml"
         }
       ]
     },
     {
       "id": "f948",
-      "name": "recipe 2",
-      "preparationTimeInMinutes": 120,
+      "recipeName": "recipe 2",
+      "preparationTime": 120,
       "description": "string",
       "ingredients": [
         {
-          "name": "ingredient 1",
-          "quantity": "20g"
+          "ingredientName": "ingredient 1",
+          "ingredientQuantity": "20g"
         },
         {
-          "name": "ingredient 2",
-          "quantity": "1kg"
+          "ingredientName": "ingredient 2",
+          "ingredientQuantity": "1kg"
         }
       ]
     },
     {
       "id": "8f02",
-      "name": "recipe 3",
-      "preparationTimeInMinutes": 45,
+      "recipeName": "recipe 3",
+      "preparationTime": 45,
       "description": "string",
       "ingredients": [
         {
-          "name": "ingredient 1",
-          "quantity": "15ml"
+          "ingredientName": "ingredient 1",
+          "ingredientQuantity": "15ml"
         },
         {
-          "name": "ingredient 2",
-          "quantity": "25g"
+          "ingredientName": "ingredient 2",
+          "ingredientQuantity": "25g"
         }
       ]
     },
     {
       "id": "2605",
-      "name": "recipe 4",
-      "preparationTimeInMinutes": 10,
+      "recipeName": "recipe 4",
+      "preparationTime": 10,
       "description": "string",
       "ingredients": [
         {
-          "name": "ingredient 1",
-          "quantity": "500g"
+          "ingredientName": "ingredient 1",
+          "ingredientQuantity": "500g"
         },
         {
-          "name": "ingredient 2",
-          "quantity": "1l"
+          "ingredientName": "ingredient 2",
+          "ingredientQuantity": "1l"
+        }
+      ]
+    },
+    {
+      "id": "87b8",
+      "recipeName": "test",
+      "description": "",
+      "preparationTime": 2,
+      "ingredients": [
+        {
+          "ingredientName": "yo",
+          "ingredientQuantity": "1"
+        }
+      ]
+    },
+    {
+      "id": "16c7",
+      "recipeName": "new recipe",
+      "description": "This is a recipe created by UI",
+      "preparationTime": 10,
+      "ingredients": [
+        {
+          "ingredientName": "Ing 1",
+          "ingredientQuantity": "250g"
+        },
+        {
+          "ingredientName": "Ing 2",
+          "ingredientQuantity": "50ml"
+        },
+        {
+          "ingredientName": "Ing 3",
+          "ingredientQuantity": "500g"
+        }
+      ]
+    },
+    {
+      "id": "033a",
+      "recipeName": "new recipe",
+      "description": "This is a recipe created by UI",
+      "preparationTime": 10,
+      "ingredients": [
+        {
+          "ingredientName": "Ing 1",
+          "ingredientQuantity": "250g"
+        },
+        {
+          "ingredientName": "Ing 2",
+          "ingredientQuantity": "50ml"
+        },
+        {
+          "ingredientName": "Ing 3",
+          "ingredientQuantity": "500g"
+        },
+        {
+          "ingredientName": "Ing 4",
+          "ingredientQuantity": "1kg"
+        }
+      ]
+    },
+    {
+      "id": "b23e",
+      "recipeName": "Recipe 5",
+      "description": "",
+      "preparationTime": 180,
+      "ingredients": [
+        {
+          "ingredientName": "Test",
+          "ingredientQuantity": "1"
         }
       ]
     }

@@ -1,0 +1,105 @@
+<mat-stepper orientation="vertical" [linear]="false" #stepper>
+  <form [formGroup]="formPresenter.form" class="form">
+    <!-- RECIPE NAME -->
+    <mat-step
+      [stepControl]="formPresenter.recipeNameControl"
+      errorMessage="Recipe name is required."
+      label="Recipe name"
+    >
+      <div class="form__mat-step-content">
+        <mat-form-field class="form__form-field--wide">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="Recipe name"
+            formControlName="recipeName"
+            required
+          />
+        </mat-form-field>
+      </div>
+    </mat-step>
+
+    <!-- RECIPE DESCRIPTION -->
+    <mat-step
+      [stepControl]="formPresenter.recipeDescriptionControl"
+      label="Description (optional)"
+    >
+      <div class="form__mat-step-content">
+        <mat-form-field class="form__form-field--wide">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            formControlName="description"
+            placeholder="Short description of your recipe"
+          />
+        </mat-form-field>
+      </div>
+    </mat-step>
+
+    <!-- RECIPE PREPARATION TIME -->
+    <mat-step
+      [stepControl]="formPresenter.recipePreparationTimeControl"
+      errorMessage="Recipe preparation time is required."
+      label="Preparation time"
+    >
+      <div class="form__mat-step-content">
+        <mat-form-field>
+          <mat-label>Preparation time (in minutes)</mat-label>
+          <input
+            type="number"
+            matInput
+            formControlName="preparationTime"
+            placeholder="How long will it take to make it?"
+          />
+        </mat-form-field>
+      </div>
+    </mat-step>
+
+    <!-- RECIPE INGREDIENTS -->
+    <mat-step
+      [stepControl]="formPresenter.ingredientsFormArray"
+      errorMessage="List of ingredients contains errors"
+      label="Ingredients"
+    >
+      <ng-container formArrayName="ingredients">
+        @for (
+          ingredientFormGroup of formPresenter.ingredientsFormArray.controls;
+          track ingredientFormGroup;
+          let i = $index
+        ) {
+          <form [formGroup]="ingredientFormGroup">
+            <div class="form__mat-step-content">
+              <div class="form__ingredient-line">
+                <mat-form-field class="form__ingredient-name">
+                  <mat-label>Ingredient name</mat-label>
+                  <input
+                    matInput
+                    formControlName="ingredientName"
+                    placeholder="Ingredient name"
+                  />
+                </mat-form-field>
+                <mat-form-field class="form__ingredient-quantity">
+                  <mat-label>Ingredient quantity</mat-label>
+                  <input
+                    matInput
+                    formControlName="ingredientQuantity"
+                    placeholder="Quantity"
+                  />
+                </mat-form-field>
+                <button
+                  [disabled]="i === 0"
+                  mat-mini-fab
+                  (click)="removeIngredient(i)"
+                  color="warn"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </form>
+        }
+        <button mat-button (click)="addIngredient()">Add ingredient</button>
+      </ng-container>
+    </mat-step>
+  </form>
+</mat-stepper>

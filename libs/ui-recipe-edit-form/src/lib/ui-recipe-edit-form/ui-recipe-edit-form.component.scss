@@ -1,0 +1,27 @@
+.form {
+  &__mat-step-content {
+    padding: 1.5em 1em 0;
+  }
+
+  &__form-field--wide {
+    width: 100%;
+  }
+
+  &__ingredient-line {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+
+    & > * {
+      margin: 0 0.5em;
+    }
+  }
+
+  &__ingredient-name {
+    flex: 2 1;
+  }
+
+  &__ingredient-quantity {
+    flex: 1 1;
+  }
+}

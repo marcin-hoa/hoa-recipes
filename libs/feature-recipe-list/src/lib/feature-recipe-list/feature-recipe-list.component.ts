@@ -8,7 +8,6 @@ import { MatIcon } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import {
-  RecipesApiActions,
   RecipesUiActions,
   selectAllRecipes,
 } from '@hoa-recipes/data-access-recipes';
@@ -36,12 +35,6 @@ export class FeatureRecipeListComponent implements OnInit {
   recipes = this.store.selectSignal(selectAllRecipes);
 
   ngOnInit(): void {
-    this.store.dispatch(RecipesApiActions.load());
-  }
-
-  selectRecipe(recipeId: string): void {
-    this.store.dispatch(
-      RecipesUiActions.selectRecipe({ selectedId: recipeId }),
-    );
+    this.store.dispatch(RecipesUiActions.load());
   }
 }

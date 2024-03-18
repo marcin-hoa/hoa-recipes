@@ -1,8 +1,8 @@
 import { CreateIngredientDto, IngredientDto } from './IngredientDto';
 
 export type CreateRecipeDto = {
-  name: string;
-  preparationTimeInMinutes: number;
+  recipeName: string;
+  preparationTime: number;
   description: string;
   ingredients: CreateIngredientDto[];
 };

@@ -1,0 +1,21 @@
+<form [formGroup]="formPresenter.form">
+  <h2 mat-dialog-title>
+    {{ isEditMode ? 'Edit recipe ' + dialogData?.recipeName : 'Create recipe' }}
+  </h2>
+  <mat-dialog-content class="recipe-dialog">
+    <hoa-recipes-ui-recipe-edit-form />
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="actions-container">
+      <button mat-flat-button [mat-dialog-close]="true">Close</button>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!formPresenter.form.valid"
+        (click)="confirm()"
+      >
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+    </div>
+  </mat-dialog-actions>
+</form>
