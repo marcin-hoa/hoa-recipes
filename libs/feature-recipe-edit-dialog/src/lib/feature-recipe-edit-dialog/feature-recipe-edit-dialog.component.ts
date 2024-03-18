@@ -4,10 +4,12 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
+  MatDialog,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
@@ -16,12 +18,14 @@ import {
 import {
   CreateRecipeDto,
   RecipeDto,
+  RecipesApiActions,
   RecipesUiActions,
 } from '@hoa-recipes/data-access-recipes';
 import {
   UiRecipeEditFormComponent,
   UiRecipeFormPresenter,
 } from '@hoa-recipes/ui-recipe-edit-form';
+import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -47,6 +51,22 @@ export class FeatureRecipeEditDialogComponent implements OnInit {
   isEditMode = this.dialogData !== null;
 
   private store = inject(Store);
+  private actions = inject(Actions);
+  private dialog = inject(MatDialog);
+
+  constructor() {
+    this.actions
+      .pipe(
+        ofType(
+          RecipesApiActions.createRecipeSuccess,
+          RecipesApiActions.editRecipeSuccess,
+        ),
+        takeUntilDestroyed(),
+      )
+      .subscribe(() => {
+        this.dialog.closeAll();
+      });
+  }
 
   ngOnInit(): void {
     if (this.isEditMode) {
