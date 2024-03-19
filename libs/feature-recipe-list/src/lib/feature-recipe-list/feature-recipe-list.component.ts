@@ -9,7 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import {
   RecipesUiActions,
-  selectAllRecipes,
+  getFilteredRecipes,
 } from '@hoa-recipes/data-access-recipes';
 import { UiRecipesPreparationTimeComponent } from '@hoa-recipes/ui-recipes-preparation-time';
 import { Store } from '@ngrx/store';
@@ -32,7 +32,7 @@ import { Store } from '@ngrx/store';
 export class FeatureRecipeListComponent implements OnInit {
   private store = inject(Store);
 
-  recipes = this.store.selectSignal(selectAllRecipes);
+  recipes = this.store.selectSignal(getFilteredRecipes);
 
   ngOnInit(): void {
     this.store.dispatch(RecipesUiActions.load());

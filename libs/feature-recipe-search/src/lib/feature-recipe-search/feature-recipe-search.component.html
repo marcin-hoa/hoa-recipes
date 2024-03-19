@@ -1,6 +1,11 @@
 <form class="search-form">
   <mat-form-field class="search-form__input" subscriptSizing="dynamic">
     <mat-label>Search (Ctrl + K)</mat-label>
-    <input #searchInput matInput placeholder="Recipe / ingredient name" />
+    <input
+      #searchInput
+      matInput
+      placeholder="Recipe / ingredient name"
+      [formControl]="formControl"
+    />
   </mat-form-field>
 </form>
