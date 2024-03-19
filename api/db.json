@@ -65,18 +65,6 @@
       ]
     },
     {
-      "id": "87b8",
-      "recipeName": "test",
-      "description": "",
-      "preparationTime": 2,
-      "ingredients": [
-        {
-          "ingredientName": "yo",
-          "ingredientQuantity": "1"
-        }
-      ]
-    },
-    {
       "id": "16c7",
       "recipeName": "new recipe",
       "description": "This is a recipe created by UI",

@@ -63,4 +63,8 @@ export const recipesReducer = createReducer<RecipesState>(
       state,
     );
   }),
+
+  on(RecipesApiActions.deleteRecipeSuccess, (state, { recipeId }) => {
+    return recipesAdapter.removeOne(recipeId, state);
+  }),
 );

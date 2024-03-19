@@ -2,9 +2,14 @@
   <mat-card-header>
     <div class="recipe-card__header-container">
       <h1>{{ recipe()?.recipeName }}</h1>
-      <button mat-icon-button (click)="openEditDialog()">
-        <mat-icon>edit</mat-icon>
-      </button>
+      <div class="recipe-card__controls">
+        <button mat-icon-button (click)="openEditDialog()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="openDeleteConfirmationDialog()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
     </div>
   </mat-card-header>
   <mat-card-content>
