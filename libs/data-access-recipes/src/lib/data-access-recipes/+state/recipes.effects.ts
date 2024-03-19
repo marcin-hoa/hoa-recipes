@@ -1,5 +1,4 @@
 import { inject, makeEnvironmentProviders } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Actions, createEffect, ofType, provideEffects } from '@ngrx/effects';
 import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
 import { RecipesRepository } from '../recipes.repository';
@@ -32,14 +31,12 @@ const loadAll$ = createEffect(
 const createRecipe$ = createEffect(
   (actions$ = inject(Actions)) => {
     const repo = inject(RecipesRepository);
-    const dialog = inject(MatDialog);
 
     return actions$.pipe(
       ofType(RecipesUiActions.createRecipe),
       exhaustMap((action) => {
         return repo.create(action.recipeDto).pipe(
           map((res) => {
-            dialog.closeAll();
             return RecipesApiActions.createRecipeSuccess({
               createdRecipe: res,
             });
@@ -58,14 +55,12 @@ const createRecipe$ = createEffect(
 const editRecipe$ = createEffect(
   (actions$ = inject(Actions)) => {
     const repo = inject(RecipesRepository);
-    const dialog = inject(MatDialog);
 
     return actions$.pipe(
       ofType(RecipesUiActions.editRecipe),
       exhaustMap((action) => {
         return repo.update(action.recipeDto).pipe(
           map((res) => {
-            dialog.closeAll();
             return RecipesApiActions.editRecipeSuccess({
               updatedRecipe: res,
             });
