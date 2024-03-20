@@ -17,14 +17,5 @@ export type ConfirmationDialogComponentData = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UiConfirmationDialogComponent {
-  private _dialogData: ConfirmationDialogComponentData =
-    inject(MAT_DIALOG_DATA);
-
-  dialogData: ConfirmationDialogComponentData = {
-    header: this._dialogData.header || 'Are you sure?',
-    text:
-      this._dialogData.text ||
-      'This will delete all elements that are currently on this page and cannot be undone.',
-    isDeleteConfirmation: this._dialogData.isDeleteConfirmation,
-  };
+  dialogData: ConfirmationDialogComponentData = inject(MAT_DIALOG_DATA);
 }
