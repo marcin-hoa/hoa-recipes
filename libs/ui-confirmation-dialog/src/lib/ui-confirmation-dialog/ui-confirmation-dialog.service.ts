@@ -10,7 +10,9 @@ import {
 export class UiConfirmationDialogService {
   private dialog = inject(MatDialog);
 
-  open(data: ConfirmationDialogComponentData): Observable<boolean | undefined> {
+  open$(
+    data: ConfirmationDialogComponentData,
+  ): Observable<boolean | undefined> {
     return this.dialog
       .open<
         UiConfirmationDialogComponent,

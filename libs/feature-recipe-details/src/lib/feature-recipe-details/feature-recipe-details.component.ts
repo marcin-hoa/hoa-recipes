@@ -75,7 +75,7 @@ export class FeatureRecipeDetailsComponent {
     const { recipeName } = this.recipe() as RecipeDto;
 
     this.confirmationDialogService
-      .open({
+      .open$({
         text: `This will delete ${recipeName} and all its ingredients. This action cannot be undone.`,
         header: `Delete ${recipeName}?`,
         isDeleteConfirmation: true,
