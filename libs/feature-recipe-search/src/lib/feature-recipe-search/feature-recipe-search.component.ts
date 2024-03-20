@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RecipesUiActions } from '@hoa-recipes/data-access-recipes';
 import { Store } from '@ngrx/store';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'hoa-recipes-feature-recipe-search',
@@ -43,7 +44,7 @@ export class FeatureRecipeSearchComponent {
 
   constructor() {
     this.formControl.valueChanges
-      .pipe(takeUntilDestroyed())
+      .pipe(debounceTime(200), takeUntilDestroyed())
       .subscribe((val) => {
         this.store.dispatch(
           RecipesUiActions.setSearchPhrase({ searchPhrase: val || '' }),
