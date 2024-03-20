@@ -25,10 +25,6 @@
         {
           "ingredientName": "ingredient 1",
           "ingredientQuantity": "20g"
-        },
-        {
-          "ingredientName": "ingredient 2",
-          "ingredientQuantity": "1kg"
         }
       ]
     },

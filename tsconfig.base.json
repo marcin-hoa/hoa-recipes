@@ -10,7 +10,10 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -27,10 +30,15 @@
       "@hoa-recipes/feature-recipe-list": [
         "libs/feature-recipe-list/src/index.ts"
       ],
+      "@hoa-recipes/feature-recipe-search": [
+        "libs/feature-recipe-search/src/index.ts"
+      ],
       "@hoa-recipes/feature-recipe-shell": [
         "libs/feature-recipe-shell/src/index.ts"
       ],
-      "@hoa-recipes/ui-author-dialog": ["libs/ui-author-dialog/src/index.ts"],
+      "@hoa-recipes/ui-author-dialog": [
+        "libs/ui-author-dialog/src/index.ts"
+      ],
       "@hoa-recipes/ui-confirmation-dialog": [
         "libs/ui-confirmation-dialog/src/index.ts"
       ],
@@ -40,8 +48,13 @@
       "@hoa-recipes/ui-recipes-preparation-time": [
         "libs/ui-recipes-preparation-time/src/index.ts"
       ],
-      "@hoa-recipes/ui-title-bar": ["libs/ui-title-bar/src/index.ts"]
+      "@hoa-recipes/ui-title-bar": [
+        "libs/ui-title-bar/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

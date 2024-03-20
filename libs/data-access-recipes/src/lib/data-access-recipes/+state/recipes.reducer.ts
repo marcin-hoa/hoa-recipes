@@ -10,6 +10,7 @@ export interface RecipesState extends EntityState<RecipesEntity> {
   selectedId?: string | number; // which Recipes record has been selected
   loaded: boolean; // has the Recipes list been loaded
   error?: string | null; // last known error (if any)
+  searchPhrase: string;
 }
 
 export interface RecipesPartialState {
@@ -25,6 +26,7 @@ export const initialRecipesState: RecipesState = recipesAdapter.getInitialState(
   {
     // set initial required properties
     loaded: false,
+    searchPhrase: '',
   },
 );
 
@@ -67,4 +69,9 @@ export const recipesReducer = createReducer<RecipesState>(
   on(RecipesApiActions.deleteRecipeSuccess, (state, { recipeId }) => {
     return recipesAdapter.removeOne(recipeId, state);
   }),
+
+  on(RecipesUiActions.setSearchPhrase, (state, { searchPhrase }) => ({
+    ...state,
+    searchPhrase: searchPhrase,
+  })),
 );

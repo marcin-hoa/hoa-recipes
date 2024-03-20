@@ -27,5 +27,6 @@ export const RecipesUiActions = createActionGroup({
     'Create Recipe': props<{ recipeDto: CreateRecipeDto }>(),
     'Edit Recipe': props<{ recipeDto: RecipeDto }>(),
     'Delete recipe': props<{ recipeId: string }>(),
+    'Set Search Phrase': props<{ searchPhrase: string }>(),
   },
 });
