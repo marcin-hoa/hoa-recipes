@@ -27,4 +27,8 @@ export class RecipesRepository {
       recipeDto,
     );
   }
+
+  delete(recipeId: string): Observable<void> {
+    return this.client.delete<void>(`${this.baseUrl}/${recipeId}`);
+  }
 }

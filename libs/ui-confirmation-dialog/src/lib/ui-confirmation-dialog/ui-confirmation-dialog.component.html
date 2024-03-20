@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>{{ dialogData.header }}</h2>
+<mat-dialog-content>{{ dialogData.text }}</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="buttons">
+    <button mat-flat-button [mat-dialog-close]="false">Cancel</button>
+    <button
+      mat-flat-button
+      [mat-dialog-close]="true"
+      [color]="dialogData.isDeleteConfirmation ? 'warn' : 'primary'"
+    >
+      {{ dialogData.isDeleteConfirmation ? 'Delete' : 'Confirm' }}
+    </button>
+  </div>
+</mat-dialog-actions>

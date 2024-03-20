@@ -13,6 +13,9 @@ export const RecipesApiActions = createActionGroup({
 
     'Edit Recipe Success': props<{ updatedRecipe: RecipesEntity }>(),
     'Edit Recipe Failure': props<{ error: string }>(),
+
+    'Delete Recipe Success': props<{ recipeId: string }>(),
+    'Delete Recipe Failure': props<{ error: string }>(),
   },
 });
 
@@ -23,6 +26,7 @@ export const RecipesUiActions = createActionGroup({
     'Select Recipe': props<{ selectedId: string }>(),
     'Create Recipe': props<{ recipeDto: CreateRecipeDto }>(),
     'Edit Recipe': props<{ recipeDto: RecipeDto }>(),
+    'Delete recipe': props<{ recipeId: string }>(),
     'Set Search Phrase': props<{ searchPhrase: string }>(),
   },
 });

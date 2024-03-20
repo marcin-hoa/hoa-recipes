@@ -66,6 +66,10 @@ export const recipesReducer = createReducer<RecipesState>(
     );
   }),
 
+  on(RecipesApiActions.deleteRecipeSuccess, (state, { recipeId }) => {
+    return recipesAdapter.removeOne(recipeId, state);
+  }),
+
   on(RecipesUiActions.setSearchPhrase, (state, { searchPhrase }) => ({
     ...state,
     searchPhrase: searchPhrase,

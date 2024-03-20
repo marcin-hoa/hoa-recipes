@@ -76,7 +76,31 @@ const editRecipe$ = createEffect(
   { functional: true },
 );
 
+const deleteRecipe$ = createEffect(
+  (actions$ = inject(Actions)) => {
+    const repo = inject(RecipesRepository);
+
+    return actions$.pipe(
+      ofType(RecipesUiActions.deleteRecipe),
+      exhaustMap((action) => {
+        return repo.delete(action.recipeId).pipe(
+          map(() => {
+            return RecipesApiActions.deleteRecipeSuccess({
+              recipeId: action.recipeId,
+            });
+          }),
+        );
+      }),
+      catchError((error) => {
+        console.error('Error', error);
+        return of(RecipesApiActions.deleteRecipeFailure({ error }));
+      }),
+    );
+  },
+  { functional: true },
+);
+
 export const provideRecipeEffects = () =>
   makeEnvironmentProviders([
-    provideEffects({ loadAll$, createRecipe$, editRecipe$ }),
+    provideEffects({ loadAll$, createRecipe$, editRecipe$, deleteRecipe$ }),
   ]);

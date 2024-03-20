@@ -5,14 +5,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
   RecipeDto,
+  RecipesApiActions,
   RecipesUiActions,
   getSelectedRecipe,
 } from '@hoa-recipes/data-access-recipes';
 import { FeatureRecipeEditDialogComponent } from '@hoa-recipes/feature-recipe-edit-dialog';
+import { UiConfirmationDialogService } from '@hoa-recipes/ui-confirmation-dialog';
 import { UiRecipesPreparationTimeComponent } from '@hoa-recipes/ui-recipes-preparation-time';
+import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { distinctUntilChanged } from 'rxjs';
 
@@ -27,6 +30,7 @@ import { distinctUntilChanged } from 'rxjs';
     RouterModule,
     UiRecipesPreparationTimeComponent,
   ],
+  providers: [UiConfirmationDialogService],
   templateUrl: './feature-recipe-details.component.html',
   styleUrl: './feature-recipe-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,7 +38,10 @@ import { distinctUntilChanged } from 'rxjs';
 export class FeatureRecipeDetailsComponent {
   private store = inject(Store);
   private route = inject(ActivatedRoute);
+  private actions = inject(Actions);
   private dialog = inject(MatDialog);
+  private confirmationDialogService = inject(UiConfirmationDialogService);
+  private router = inject(Router);
 
   recipe = this.store.selectSignal(getSelectedRecipe);
 
@@ -47,6 +54,12 @@ export class FeatureRecipeDetailsComponent {
           RecipesUiActions.selectRecipe({ selectedId: recipeId as string }),
         );
       });
+
+    this.actions
+      .pipe(ofType(RecipesApiActions.deleteRecipeSuccess), takeUntilDestroyed())
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      });
   }
 
   openEditDialog(): void {
@@ -56,5 +69,25 @@ export class FeatureRecipeDetailsComponent {
         data: this.recipe() as RecipeDto,
       },
     );
+  }
+
+  openDeleteConfirmationDialog(): void {
+    const { recipeName, id } = this.recipe() as RecipeDto;
+
+    this.confirmationDialogService
+      .open$({
+        text: `This will delete ${recipeName} and all its ingredients. This action cannot be undone.`,
+        header: `Delete ${recipeName}?`,
+        isDeleteConfirmation: true,
+      })
+      .subscribe((val) => {
+        if (val) {
+          this.store.dispatch(
+            RecipesUiActions.deleteRecipe({
+              recipeId: id,
+            }),
+          );
+        }
+      });
   }
 }
