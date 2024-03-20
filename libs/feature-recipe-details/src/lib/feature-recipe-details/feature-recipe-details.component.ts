@@ -72,7 +72,7 @@ export class FeatureRecipeDetailsComponent {
   }
 
   openDeleteConfirmationDialog(): void {
-    const { recipeName } = this.recipe() as RecipeDto;
+    const { recipeName, id } = this.recipe() as RecipeDto;
 
     this.confirmationDialogService
       .open$({
@@ -84,7 +84,7 @@ export class FeatureRecipeDetailsComponent {
         if (val) {
           this.store.dispatch(
             RecipesUiActions.deleteRecipe({
-              recipeId: this.recipe()?.id as string,
+              recipeId: id,
             }),
           );
         }
