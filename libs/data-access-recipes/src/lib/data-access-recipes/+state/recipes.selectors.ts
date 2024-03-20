@@ -45,3 +45,25 @@ export const getSelectedRecipe = createSelector(
     return selectedId ? entities[selectedId] : undefined;
   },
 );
+
+export const getSearchPhrase = createSelector(
+  selectRecipesState,
+  (state) => state.searchPhrase,
+);
+
+export const getFilteredRecipes = createSelector(
+  selectAllRecipes,
+  getSearchPhrase,
+  (recipes, searchPhrase) => {
+    return recipes.filter((r) => {
+      const phrase = searchPhrase.trim().toLowerCase();
+
+      const recipeNameMatch = r.recipeName.toLowerCase().includes(phrase);
+      const recipeIngredientMatch = r.ingredients.some((ing) =>
+        ing.ingredientName.toLowerCase().includes(phrase),
+      );
+
+      return recipeNameMatch || recipeIngredientMatch;
+    });
+  },
+);
