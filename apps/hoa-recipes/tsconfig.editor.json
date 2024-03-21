@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "../../node_modules/@angular/**/*.d.ts"
   ],
   "compilerOptions": {},
   "exclude": [

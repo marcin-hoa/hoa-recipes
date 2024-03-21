@@ -1,12 +1,18 @@
 <mat-nav-list role="list" class="list">
   @for (recipe of recipes(); track recipe.id) {
-    <mat-list-item role="listitem">
-      <a class="title" matListItemTitle [routerLink]="recipe.id"
-        >{{ recipe.recipeName }}
-        <hoa-recipes-ui-recipes-preparation-time
+    <a
+      mat-list-item
+      class="title"
+      matListItemTitle
+      [routerLink]="recipe.id"
+      [routerLinkActive]="'title--active'"
+    >
+      <span matListItemTitle
+        >{{ recipe.recipeName
+        }}<hoa-recipes-ui-recipes-preparation-time
           matListItemLine
           [preparationTime]="recipe.preparationTime"
-      /></a>
-    </mat-list-item>
+      /></span>
+    </a>
   }
 </mat-nav-list>
