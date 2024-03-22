@@ -1,6 +1,7 @@
 import { inject, makeEnvironmentProviders } from '@angular/core';
 import { Actions, createEffect, ofType, provideEffects } from '@ngrx/effects';
 import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
+import { CreateRecipeDto } from '../dto/RecipeDto';
 import { RecipesRepository } from '../recipes.repository';
 import { RecipesApiActions, RecipesUiActions } from './recipes.actions';
 
@@ -32,9 +33,8 @@ const createRecipe$ = createEffect(
   (actions$ = inject(Actions)) => {
     const repo = inject(RecipesRepository);
 
-    return actions$.pipe(
-      ofType(RecipesUiActions.createRecipe),
-      exhaustMap((action) => {
+    const createRecipeObservable$ = exhaustMap(
+      (action: { recipeDto: CreateRecipeDto }) => {
         return repo.create(action.recipeDto).pipe(
           map((res) => {
             return RecipesApiActions.createRecipeSuccess({
@@ -42,7 +42,12 @@ const createRecipe$ = createEffect(
             });
           }),
         );
-      }),
+      },
+    );
+
+    return actions$.pipe(
+      ofType(RecipesUiActions.createRecipe),
+      createRecipeObservable$,
       catchError((error) => {
         console.error('Error', error);
         return of(RecipesApiActions.createRecipeFailure({ error }));

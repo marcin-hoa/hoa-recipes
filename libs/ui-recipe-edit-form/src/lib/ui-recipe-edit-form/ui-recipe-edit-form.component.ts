@@ -1,5 +1,10 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,6 +36,7 @@ import { UiRecipeFormPresenter } from './recipe-form.presenter';
 })
 export class UiRecipeEditFormComponent {
   formPresenter = inject(UiRecipeFormPresenter);
+  imageName = signal<string>('');
 
   addIngredient(): void {
     this.formPresenter.addIngredientFormControl();
@@ -38,5 +44,17 @@ export class UiRecipeEditFormComponent {
 
   removeIngredient(index: number): void {
     this.formPresenter.removeIngredientFormControl(index);
+  }
+
+  onFileSelected(e: Event): void {
+    const target = e.target as HTMLInputElement;
+
+    if (target.files === null) {
+      return;
+    }
+
+    const file: File = target.files[0];
+    this.imageName.set(file.name);
+    this.formPresenter.imageFormControl.setValue(file.name);
   }
 }

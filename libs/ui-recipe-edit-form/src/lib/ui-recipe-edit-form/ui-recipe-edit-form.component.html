@@ -36,6 +36,27 @@
       </div>
     </mat-step>
 
+    <!-- RECIPE IMAGE -->
+    <mat-step
+      [stepControl]="formPresenter.imageFormControl"
+      label="Image (optional)"
+    >
+      <div class="form__mat-step-content">
+        <button type="button" mat-raised-button (click)="fileInput.click()">
+          Choose Image
+        </button>
+        <input
+          hidden
+          (change)="onFileSelected($event)"
+          #fileInput
+          type="file"
+          id="file"
+          accept=".png,.jpg,.jpeg"
+        />
+      </div>
+      <span>{{ imageName() }}</span>
+    </mat-step>
+
     <!-- RECIPE PREPARATION TIME -->
     <mat-step
       [stepControl]="formPresenter.recipePreparationTimeControl"

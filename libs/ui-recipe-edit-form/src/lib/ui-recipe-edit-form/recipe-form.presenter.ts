@@ -12,6 +12,7 @@ export type RecipeFormState = {
       ingredientQuantity: FormControl<string>;
     }>
   >;
+  image: FormControl;
 };
 
 @Injectable()
@@ -23,6 +24,9 @@ export class UiRecipeFormPresenter {
     }),
     description: new FormControl<string>('', {
       validators: [Validators.maxLength(150)],
+      nonNullable: true,
+    }),
+    image: new FormControl<string>('', {
       nonNullable: true,
     }),
     preparationTime: new FormControl<number>(0, {
@@ -70,6 +74,10 @@ export class UiRecipeFormPresenter {
 
   get ingredientsFormArray(): FormArray<FormGroup> {
     return this._form.controls.ingredients;
+  }
+
+  get imageFormControl(): FormControl {
+    return this._form.controls.image;
   }
 
   addIngredientFormControl(): void {
