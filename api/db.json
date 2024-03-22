@@ -61,26 +61,6 @@
       ]
     },
     {
-      "id": "16c7",
-      "recipeName": "new recipe",
-      "description": "This is a recipe created by UI",
-      "preparationTime": 10,
-      "ingredients": [
-        {
-          "ingredientName": "Ing 1",
-          "ingredientQuantity": "250g"
-        },
-        {
-          "ingredientName": "Ing 2",
-          "ingredientQuantity": "50ml"
-        },
-        {
-          "ingredientName": "Ing 3",
-          "ingredientQuantity": "500g"
-        }
-      ]
-    },
-    {
       "id": "033a",
       "recipeName": "new recipe",
       "description": "This is a recipe created by UI",
