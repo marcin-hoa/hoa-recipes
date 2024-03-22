@@ -6,6 +6,11 @@
   text-decoration: none;
 
   &--active {
-    background-color: $accent;
+    background-color: #dadada;
+
+    &:focus,
+    :active {
+      background-color: transparent;
+    }
   }
 }
