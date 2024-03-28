@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { CreateRecipeDto, RecipeDto } from '../dto/RecipeDto';
+import { RecipeDto } from '../dto/RecipeDto';
 import { RecipesEntity } from './recipes.models';
 
 export const RecipesApiActions = createActionGroup({
@@ -12,7 +12,6 @@ export const RecipesApiActions = createActionGroup({
       recipeDto: RecipesEntity;
     }>(),
     'Create Recipe Failure': props<{ error: string }>(),
-
     'Edit Recipe Failure': props<{ error: string }>(),
 
     'Delete Recipe Success': props<{ recipeId: string }>(),
@@ -28,19 +27,25 @@ export const RecipesUiActions = createActionGroup({
   events: {
     load: emptyProps(),
     'Select Recipe': props<{ selectedId: string }>(),
+
     'Create Recipe': props<{
-      recipeDto: CreateRecipeDto;
+      recipeDto: RecipeDto;
       recipeImage: File | undefined;
     }>(),
+
     'Edit Recipe': props<{
       recipeDto: RecipeDto;
       recipeImage: File | undefined;
     }>(),
+
     'Delete recipe': props<{ recipeId: string }>(),
+
     'Set Search Phrase': props<{ searchPhrase: string }>(),
+
     'Upload Recipe Image': props<{
       recipe: RecipesEntity;
       image: File;
+      imageName: string;
     }>(),
   },
 });

@@ -8,7 +8,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~17.1.0",
-    "@angular/cdk": "~17.2.1",
+    "@angular/cdk": "^17.3.1",
     "@angular/common": "~17.1.0",
     "@angular/compiler": "~17.1.0",
     "@angular/core": "~17.1.0",
@@ -70,7 +70,6 @@
     "jest-preset-angular": "~13.1.4",
     "json-server": "0.17.4",
     "jsonc-eslint-parser": "^2.1.0",
-    "mime-types": "^2.1.35",
     "multer": "^1.4.5-lts.1",
     "nx": "18.0.7",
     "prettier": "^3.2.5",

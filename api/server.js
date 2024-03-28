@@ -1,15 +1,13 @@
 const jsonServer = require('json-server');
 const path = require('path');
 const multer = require('multer');
-const mime = require('mime-types');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, 'public', 'uploads'));
   },
   filename: function (req, file, cb) {
-    const ext = mime.extension(file.mimetype);
-    cb(null, `${req.params.id}.${ext}`);
+    cb(null, file.originalname);
   },
 });
 
@@ -25,6 +23,10 @@ server.post(
     res.status(200).send({ fileName: req.file.filename });
   },
 );
+
+server.get('/recipes/:id/image/:fileName', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'uploads', req.params.fileName));
+});
 
 server.use(middlewares);
 server.use(upload.any());

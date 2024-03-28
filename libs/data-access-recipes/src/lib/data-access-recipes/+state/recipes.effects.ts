@@ -1,7 +1,6 @@
 import { inject, makeEnvironmentProviders } from '@angular/core';
 import { Actions, createEffect, ofType, provideEffects } from '@ngrx/effects';
 import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
-import { CreateRecipeDto } from '../dto/RecipeDto';
 import { RecipesRepository } from '../recipes.repository';
 import { RecipesApiActions, RecipesUiActions } from './recipes.actions';
 
@@ -35,12 +34,16 @@ const createRecipe$ = createEffect(
 
     return actions$.pipe(
       ofType(RecipesUiActions.createRecipe),
-      exhaustMap(
-        (action: {
-          recipeDto: CreateRecipeDto;
-          recipeImage: File | undefined;
-        }) => {
-          return repo.create(action.recipeDto).pipe(
+      exhaustMap((action) => {
+        const randomRecipeId = (Math.random() + 1).toString(36).substring(7);
+        const ext = action.recipeDto.imageName.split('.').splice(-1);
+        return repo
+          .create({
+            ...action.recipeDto,
+            id: randomRecipeId,
+            imageName: `${randomRecipeId}.${ext}`,
+          })
+          .pipe(
             map((res) => {
               return action.recipeImage === undefined
                 ? RecipesApiActions.createOrModifyRecipeSuccess({
@@ -49,11 +52,11 @@ const createRecipe$ = createEffect(
                 : RecipesUiActions.uploadRecipeImage({
                     image: action.recipeImage,
                     recipe: res,
+                    imageName: res.imageName,
                   });
             }),
           );
-        },
-      ),
+      }),
       catchError((error) => {
         console.error('Error', error);
         return of(RecipesApiActions.createRecipeFailure({ error }));
@@ -79,6 +82,7 @@ const editRecipe$ = createEffect(
               : RecipesUiActions.uploadRecipeImage({
                   image: action.recipeImage,
                   recipe: res,
+                  imageName: res.imageName,
                 });
           }),
         );
@@ -123,13 +127,15 @@ const uploadRecipeImage$ = createEffect(
     return actions$.pipe(
       ofType(RecipesUiActions.uploadRecipeImage),
       exhaustMap((action) => {
-        return repo.uploadImage(action.recipe.id, action.image).pipe(
-          map(() => {
-            return RecipesApiActions.createOrModifyRecipeSuccess({
-              recipeDto: action.recipe,
-            });
-          }),
-        );
+        return repo
+          .uploadImage(action.recipe.id, action.image, action.recipe.imageName)
+          .pipe(
+            map(() => {
+              return RecipesApiActions.createOrModifyRecipeSuccess({
+                recipeDto: action.recipe,
+              });
+            }),
+          );
       }),
       catchError((error) => {
         console.error('Error', error);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateRecipeDto } from '@hoa-recipes/data-access-recipes';
+import { RecipeDto } from '@hoa-recipes/data-access-recipes';
 
 export type RecipeFormState = {
   recipeName: FormControl<string>;
@@ -12,7 +12,7 @@ export type RecipeFormState = {
       ingredientQuantity: FormControl<string>;
     }>
   >;
-  image: FormControl<string>;
+  imageName: FormControl<string>;
 };
 
 @Injectable()
@@ -27,7 +27,7 @@ export class UiRecipeFormPresenter {
       validators: [Validators.maxLength(150)],
       nonNullable: true,
     }),
-    image: new FormControl<string>('', {
+    imageName: new FormControl<string>('', {
       nonNullable: true,
     }),
     preparationTime: new FormControl<number>(0, {
@@ -86,7 +86,7 @@ export class UiRecipeFormPresenter {
   }
 
   get imageFormControl(): FormControl {
-    return this._form.controls.image;
+    return this._form.controls.imageName;
   }
 
   addIngredientFormControl(): void {
@@ -97,7 +97,7 @@ export class UiRecipeFormPresenter {
     this.ingredientsFormArray.removeAt(index);
   }
 
-  setInitialData(data: CreateRecipeDto): void {
+  setInitialData(data: RecipeDto): void {
     this._form.patchValue(data);
     this.ingredientsFormArray.clear();
 

@@ -16,7 +16,6 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import {
-  CreateRecipeDto,
   RecipeDto,
   RecipesApiActions,
   RecipesUiActions,
@@ -67,7 +66,7 @@ export class FeatureRecipeEditDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isEditMode) {
-      this.formPresenter.setInitialData(this.dialogData as CreateRecipeDto);
+      this.formPresenter.setInitialData(this.dialogData as RecipeDto);
     }
   }
 
@@ -84,7 +83,7 @@ export class FeatureRecipeEditDialogComponent implements OnInit {
     } else {
       this.store.dispatch(
         RecipesUiActions.createRecipe({
-          recipeDto: formValue,
+          recipeDto: { ...formValue, id: '' },
           recipeImage: this.formPresenter.recipeImage,
         }),
       );

@@ -63,6 +63,7 @@ export class FeatureRecipeDetailsComponent {
   }
 
   openEditDialog(): void {
+    console.log(this.recipe());
     this.dialog.open<FeatureRecipeEditDialogComponent, RecipeDto>(
       FeatureRecipeEditDialogComponent,
       {

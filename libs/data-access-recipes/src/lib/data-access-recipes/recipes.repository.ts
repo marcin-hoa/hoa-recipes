@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateRecipeDto, RecipeDto } from './dto/RecipeDto';
+import { RecipeDto } from './dto/RecipeDto';
 
 @Injectable()
 export class RecipesRepository {
@@ -17,7 +17,7 @@ export class RecipesRepository {
     return this.client.get<RecipeDto>(`${this.baseUrl}/${id}`);
   }
 
-  create(recipeDto: CreateRecipeDto): Observable<RecipeDto> {
+  create(recipeDto: RecipeDto): Observable<RecipeDto> {
     return this.client.post<RecipeDto>(this.baseUrl, recipeDto);
   }
 
@@ -32,9 +32,13 @@ export class RecipesRepository {
     return this.client.delete<void>(`${this.baseUrl}/${recipeId}`);
   }
 
-  uploadImage(recipeId: string, file: File): Observable<string> {
+  uploadImage(
+    recipeId: string,
+    file: File,
+    fileName: string,
+  ): Observable<string> {
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('image', file, fileName);
 
     return this.client.post<string>(
       `${this.baseUrl}/${recipeId}/image`,
