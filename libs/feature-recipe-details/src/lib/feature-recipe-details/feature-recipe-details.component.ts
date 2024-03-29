@@ -15,6 +15,7 @@ import {
 } from '@hoa-recipes/data-access-recipes';
 import { FeatureRecipeEditDialogComponent } from '@hoa-recipes/feature-recipe-edit-dialog';
 import { UiConfirmationDialogService } from '@hoa-recipes/ui-confirmation-dialog';
+import { UiImageUploadDialogComponent } from '@hoa-recipes/ui-image-upload-dialog';
 import { UiRecipesPreparationTimeComponent } from '@hoa-recipes/ui-recipes-preparation-time';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
@@ -62,10 +63,27 @@ export class FeatureRecipeDetailsComponent {
       .subscribe(() => {
         this.router.navigate(['/']);
       });
+
+    this.actions
+      .pipe(
+        ofType(RecipesApiActions.uploadRecipeImageSuccess),
+        takeUntilDestroyed(),
+      )
+      .subscribe((res) => {
+        this.store.dispatch(
+          RecipesUiActions.editRecipe({
+            recipeDto: {
+              ...(this.recipe() as RecipeDto),
+              imageName: res.fileName,
+            },
+          }),
+        );
+        this.dialog.closeAll();
+        this.router.navigate([this.recipe()?.id]);
+      });
   }
 
   openEditDialog(): void {
-    console.log(this.recipe());
     this.dialog.open<FeatureRecipeEditDialogComponent, RecipeDto>(
       FeatureRecipeEditDialogComponent,
       {
@@ -92,5 +110,14 @@ export class FeatureRecipeDetailsComponent {
           );
         }
       });
+  }
+
+  openImageEditDialog(): void {
+    this.dialog.open<UiImageUploadDialogComponent, RecipeDto>(
+      UiImageUploadDialogComponent,
+      {
+        data: this.recipe(),
+      },
+    );
   }
 }

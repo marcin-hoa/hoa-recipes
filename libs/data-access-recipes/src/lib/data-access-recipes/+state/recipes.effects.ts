@@ -107,15 +107,42 @@ const uploadRecipeImage$ = createEffect(
     return actions$.pipe(
       ofType(RecipesUiActions.uploadRecipeImage),
       exhaustMap((action) => {
+        const ext = action.image.name.split('.').splice(-1);
         return repo
-          .uploadImage(action.recipe.id, action.image, action.imageName)
+          .uploadImage(
+            action.recipe.id,
+            action.image,
+            `${action.recipe.id}.${ext}`,
+          )
           .pipe(
             map((res) => {
               return RecipesApiActions.uploadRecipeImageSuccess({
-                fileName: res,
+                fileName: res.fileName,
               });
             }),
           );
+      }),
+      catchError((error) => {
+        console.error('Error', error);
+        return of(RecipesApiActions.uploadRecipeImageFailure({ error }));
+      }),
+    );
+  },
+  { functional: true },
+);
+
+const deleteRecipeImage$ = createEffect(
+  (actions$ = inject(Actions)) => {
+    const repo = inject(RecipesRepository);
+
+    return actions$.pipe(
+      ofType(RecipesUiActions.deleteRecipeImage),
+      exhaustMap((action) => {
+        return repo.deleteImage(action.recipe.id, action.fileName).pipe(
+          map(() => {
+            return RecipesApiActions.deleteRecipeImageSuccess();
+          }),
+        );
       }),
       catchError((error) => {
         console.error('Error', error);
@@ -134,5 +161,6 @@ export const provideRecipeEffects = () =>
       editRecipe$,
       deleteRecipe$,
       uploadRecipeImage$,
+      deleteRecipeImage$,
     }),
   ]);

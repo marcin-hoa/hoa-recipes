@@ -10,10 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogTitle,
+  MatDialogModule,
 } from '@angular/material/dialog';
 import {
   RecipeDto,
@@ -31,10 +28,7 @@ import { Store } from '@ngrx/store';
   selector: 'hoa-recipes-feature-recipe-edit-dialog',
   standalone: true,
   imports: [
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-    MatDialogTitle,
+    MatDialogModule,
     MatButtonModule,
     UiRecipeEditFormComponent,
     ReactiveFormsModule,

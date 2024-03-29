@@ -19,6 +19,9 @@ export const RecipesApiActions = createActionGroup({
 
     'Upload Recipe Image Success': props<{ fileName: string }>(),
     'Upload Recipe Image Failure': props<{ error: string }>(),
+
+    'Delete Recipe Image Success': emptyProps(),
+    'Delete Recipe Image Failure': props<{ error: string }>(),
   },
 });
 
@@ -39,7 +42,11 @@ export const RecipesUiActions = createActionGroup({
     'Upload Recipe Image': props<{
       recipe: RecipesEntity;
       image: File;
-      imageName: string;
+    }>(),
+
+    'Delete Recipe Image': props<{
+      recipe: RecipesEntity;
+      fileName: string;
     }>(),
   },
 });

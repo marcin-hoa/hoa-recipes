@@ -36,17 +36,19 @@ export class RecipesRepository {
     recipeId: string,
     file: File,
     fileName: string,
-  ): Observable<string> {
+  ): Observable<{ fileName: string }> {
     const formData = new FormData();
     formData.append('image', file, fileName);
 
-    return this.client.post<string>(
+    return this.client.post<{ fileName: string }>(
       `${this.baseUrl}/${recipeId}/image`,
       formData,
     );
   }
 
-  deleteImage(recipeId: string): Observable<void> {
-    return this.client.delete<void>(`${this.baseUrl}/${recipeId}/image`);
+  deleteImage(recipeId: string, fileName: string): Observable<void> {
+    return this.client.delete<void>(
+      `${this.baseUrl}/${recipeId}/image/${fileName}`,
+    );
   }
 }
