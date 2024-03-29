@@ -44,9 +44,6 @@ export const RecipesUiActions = createActionGroup({
       image: File;
     }>(),
 
-    'Delete Recipe Image': props<{
-      recipe: RecipesEntity;
-      fileName: string;
-    }>(),
+    'Delete Recipe Image': props<{ fileName: string }>(),
   },
 });

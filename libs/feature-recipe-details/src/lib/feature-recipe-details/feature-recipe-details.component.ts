@@ -1,25 +1,18 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import {
-  RecipeDto,
-  RecipesApiActions,
-  RecipesUiActions,
-  getSelectedRecipe,
-} from '@hoa-recipes/data-access-recipes';
+import { RouterModule } from '@angular/router';
+import { RecipeDto, RecipesUiActions } from '@hoa-recipes/data-access-recipes';
 import { FeatureRecipeEditDialogComponent } from '@hoa-recipes/feature-recipe-edit-dialog';
 import { UiConfirmationDialogService } from '@hoa-recipes/ui-confirmation-dialog';
 import { UiImageUploadDialogComponent } from '@hoa-recipes/ui-image-upload-dialog';
 import { UiRecipesPreparationTimeComponent } from '@hoa-recipes/ui-recipes-preparation-time';
-import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { distinctUntilChanged } from 'rxjs';
+import { FeatureRecipeDetailsService } from './feature-recipe-details.service';
 
 @Component({
   selector: 'hoa-recipes-feature-recipe-details',
@@ -33,55 +26,18 @@ import { distinctUntilChanged } from 'rxjs';
     UiRecipesPreparationTimeComponent,
     MatMenuModule,
   ],
-  providers: [UiConfirmationDialogService],
+  providers: [UiConfirmationDialogService, FeatureRecipeDetailsService],
   templateUrl: './feature-recipe-details.component.html',
   styleUrl: './feature-recipe-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureRecipeDetailsComponent {
   private store = inject(Store);
-  private route = inject(ActivatedRoute);
-  private actions = inject(Actions);
   private dialog = inject(MatDialog);
   private confirmationDialogService = inject(UiConfirmationDialogService);
-  private router = inject(Router);
+  private recipeDetailsService = inject(FeatureRecipeDetailsService);
 
-  recipe = this.store.selectSignal(getSelectedRecipe);
-
-  constructor() {
-    this.route.paramMap
-      .pipe(distinctUntilChanged(), takeUntilDestroyed())
-      .subscribe((r) => {
-        const recipeId = r.get('id');
-        this.store.dispatch(
-          RecipesUiActions.selectRecipe({ selectedId: recipeId as string }),
-        );
-      });
-
-    this.actions
-      .pipe(ofType(RecipesApiActions.deleteRecipeSuccess), takeUntilDestroyed())
-      .subscribe(() => {
-        this.router.navigate(['/']);
-      });
-
-    this.actions
-      .pipe(
-        ofType(RecipesApiActions.uploadRecipeImageSuccess),
-        takeUntilDestroyed(),
-      )
-      .subscribe((res) => {
-        this.store.dispatch(
-          RecipesUiActions.editRecipe({
-            recipeDto: {
-              ...(this.recipe() as RecipeDto),
-              imageName: res.fileName,
-            },
-          }),
-        );
-        this.dialog.closeAll();
-        this.router.navigate([this.recipe()?.id]);
-      });
-  }
+  recipe = this.recipeDetailsService.recipe;
 
   openEditDialog(): void {
     this.dialog.open<FeatureRecipeEditDialogComponent, RecipeDto>(

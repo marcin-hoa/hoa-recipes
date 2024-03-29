@@ -32,23 +32,17 @@ export class RecipesRepository {
     return this.client.delete<void>(`${this.baseUrl}/${recipeId}`);
   }
 
-  uploadImage(
-    recipeId: string,
-    file: File,
-    fileName: string,
-  ): Observable<{ fileName: string }> {
+  uploadImage(file: File, fileName: string): Observable<{ fileName: string }> {
     const formData = new FormData();
     formData.append('image', file, fileName);
 
     return this.client.post<{ fileName: string }>(
-      `${this.baseUrl}/${recipeId}/image`,
+      `${this.baseUrl}/image`,
       formData,
     );
   }
 
-  deleteImage(recipeId: string, fileName: string): Observable<void> {
-    return this.client.delete<void>(
-      `${this.baseUrl}/${recipeId}/image/${fileName}`,
-    );
+  deleteImage(fileName: string): Observable<void> {
+    return this.client.delete<void>(`${this.baseUrl}/image/${fileName}`);
   }
 }

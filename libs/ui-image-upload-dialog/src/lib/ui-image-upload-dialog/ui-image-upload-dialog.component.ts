@@ -39,6 +39,18 @@ export class UiImageUploadDialogComponent {
     );
   }
 
+  deleteImage(): void {
+    if (!this.dialogData.imageName) {
+      return;
+    }
+
+    this.store.dispatch(
+      RecipesUiActions.deleteRecipeImage({
+        fileName: this.dialogData.imageName,
+      }),
+    );
+  }
+
   updateUploadButtonStatus(): void {
     const isFileSet = !!this.fileInputRef.nativeElement.files?.length || false;
     this.uploadButtonDisabled.set(!isFileSet);

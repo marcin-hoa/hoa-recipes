@@ -109,11 +109,7 @@ const uploadRecipeImage$ = createEffect(
       exhaustMap((action) => {
         const ext = action.image.name.split('.').splice(-1);
         return repo
-          .uploadImage(
-            action.recipe.id,
-            action.image,
-            `${action.recipe.id}.${ext}`,
-          )
+          .uploadImage(action.image, `${action.recipe.id}.${ext}`)
           .pipe(
             map((res) => {
               return RecipesApiActions.uploadRecipeImageSuccess({
@@ -138,7 +134,7 @@ const deleteRecipeImage$ = createEffect(
     return actions$.pipe(
       ofType(RecipesUiActions.deleteRecipeImage),
       exhaustMap((action) => {
-        return repo.deleteImage(action.recipe.id, action.fileName).pipe(
+        return repo.deleteImage(action.fileName).pipe(
           map(() => {
             return RecipesApiActions.deleteRecipeImageSuccess();
           }),

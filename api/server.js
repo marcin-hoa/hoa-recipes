@@ -1,10 +1,13 @@
 const jsonServer = require('json-server');
 const path = require('path');
 const multer = require('multer');
+const fs = require('fs');
+
+const uploadsPath = path.join(__dirname, 'public', 'uploads');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'public', 'uploads'));
+    cb(null, uploadsPath);
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -17,15 +20,26 @@ const router = jsonServer.router(path.join(__dirname, 'db.json'));
 const middlewares = jsonServer.defaults();
 
 server.post(
-  '/recipes/:id/image',
+  '/recipes/image',
   upload.single('image'),
   function (req, res, next) {
-    res.status(200).send({ fileName: req.file.filename });
+    res.status(201).send({ fileName: req.file.filename });
   },
 );
 
-server.get('/recipes/:id/image/:fileName', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'uploads', req.params.fileName));
+server.get('/recipes/image/:fileName', (req, res) => {
+  res.sendFile(path.join(uploadsPath, req.params.fileName));
+});
+
+server.delete('/recipes/image/:fileName', (req, res) => {
+  fs.unlink(path.join(uploadsPath, req.params.fileName), (err) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('File is deleted.');
+    }
+  });
+  res.sendStatus(204);
 });
 
 server.use(middlewares);
