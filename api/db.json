@@ -2,9 +2,10 @@
   "recipes": [
     {
       "id": "9f93",
-      "recipeName": "recipe 1",
+      "recipeName": "Pizza",
       "preparationTime": 25,
       "description": "string",
+      "imageName": "9f93.jpg",
       "ingredients": [
         {
           "ingredientName": "ingredient 1",
@@ -18,101 +19,14 @@
     },
     {
       "id": "f948",
-      "recipeName": "recipe 2",
+      "recipeName": "Sushi",
       "preparationTime": 120,
       "description": "string",
+      "imageName": "f948.jpeg",
       "ingredients": [
         {
           "ingredientName": "ingredient 1",
           "ingredientQuantity": "20g"
-        }
-      ]
-    },
-    {
-      "id": "8f02",
-      "recipeName": "recipe 3",
-      "preparationTime": 45,
-      "description": "string",
-      "ingredients": [
-        {
-          "ingredientName": "ingredient 1",
-          "ingredientQuantity": "15ml"
-        },
-        {
-          "ingredientName": "ingredient 2",
-          "ingredientQuantity": "25g"
-        }
-      ]
-    },
-    {
-      "id": "2605",
-      "recipeName": "recipe 4",
-      "preparationTime": 10,
-      "description": "string",
-      "ingredients": [
-        {
-          "ingredientName": "ingredient 1",
-          "ingredientQuantity": "500g"
-        },
-        {
-          "ingredientName": "ingredient 2",
-          "ingredientQuantity": "1l"
-        }
-      ]
-    },
-    {
-      "id": "16c7",
-      "recipeName": "new recipe",
-      "description": "This is a recipe created by UI",
-      "preparationTime": 10,
-      "ingredients": [
-        {
-          "ingredientName": "Ing 1",
-          "ingredientQuantity": "250g"
-        },
-        {
-          "ingredientName": "Ing 2",
-          "ingredientQuantity": "50ml"
-        },
-        {
-          "ingredientName": "Ing 3",
-          "ingredientQuantity": "500g"
-        }
-      ]
-    },
-    {
-      "id": "033a",
-      "recipeName": "new recipe",
-      "description": "This is a recipe created by UI",
-      "preparationTime": 10,
-      "ingredients": [
-        {
-          "ingredientName": "Ing 1",
-          "ingredientQuantity": "250g"
-        },
-        {
-          "ingredientName": "Ing 2",
-          "ingredientQuantity": "50ml"
-        },
-        {
-          "ingredientName": "Ing 3",
-          "ingredientQuantity": "500g"
-        },
-        {
-          "ingredientName": "Ing 4",
-          "ingredientQuantity": "1kg"
-        }
-      ]
-    },
-    {
-      "id": "b23e",
-      "recipeName": "Recipe 5",
-      "description": "",
-      "preparationTime": 180,
-      "ingredients": [
-        {
-          "ingredientName": "Test",
-          "ingredientQuantity": "1"
         }
       ]
     }

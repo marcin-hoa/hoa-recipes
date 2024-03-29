@@ -5,7 +5,7 @@ export type CreateRecipeDto = {
   preparationTime: number;
   description: string;
   ingredients: IngredientDto[];
-  imageName: string;
+  imageName?: string;
 };
 
 export type RecipeDto = CreateRecipeDto & {

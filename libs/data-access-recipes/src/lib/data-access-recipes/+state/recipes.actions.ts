@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { RecipeDto } from '../dto/RecipeDto';
+import { CreateRecipeDto, RecipeDto } from '../dto/RecipeDto';
 import { RecipesEntity } from './recipes.models';
 
 export const RecipesApiActions = createActionGroup({
@@ -8,11 +8,11 @@ export const RecipesApiActions = createActionGroup({
     'Load Recipes Success': props<{ recipes: RecipesEntity[] }>(),
     'Load Recipes Failure': props<{ error: string }>(),
 
-    'Create Or Modify Recipe Success': props<{
-      recipeDto: RecipesEntity;
-    }>(),
     'Create Recipe Failure': props<{ error: string }>(),
+    'Create Recipe Success': props<{ recipeDto: RecipesEntity }>(),
+
     'Edit Recipe Failure': props<{ error: string }>(),
+    'Edit Recipe Success': props<{ recipeDto: RecipesEntity }>(),
 
     'Delete Recipe Success': props<{ recipeId: string }>(),
     'Delete Recipe Failure': props<{ error: string }>(),
@@ -28,15 +28,9 @@ export const RecipesUiActions = createActionGroup({
     load: emptyProps(),
     'Select Recipe': props<{ selectedId: string }>(),
 
-    'Create Recipe': props<{
-      recipeDto: RecipeDto;
-      recipeImage: File | undefined;
-    }>(),
+    'Create Recipe': props<{ recipeDto: CreateRecipeDto }>(),
 
-    'Edit Recipe': props<{
-      recipeDto: RecipeDto;
-      recipeImage: File | undefined;
-    }>(),
+    'Edit Recipe': props<{ recipeDto: RecipeDto }>(),
 
     'Delete recipe': props<{ recipeId: string }>(),
 

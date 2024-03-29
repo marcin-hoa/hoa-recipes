@@ -1,18 +1,5 @@
 <mat-card class="recipe-card">
   <mat-card-header>
-    <div class="recipe-card__header-container">
-      <h1>{{ recipe()?.recipeName }}</h1>
-      <div class="recipe-card__controls">
-        <button mat-icon-button (click)="openEditDialog()">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button (click)="openDeleteConfirmationDialog()">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-    </div>
-  </mat-card-header>
-  <mat-card-content>
     @if (recipe()?.imageName && recipe()?.imageName !== '') {
       <img
         [src]="'api/recipes/' + recipe()?.id + '/image/' + recipe()?.imageName"
@@ -20,8 +7,37 @@
         class="recipe-card__image"
       />
     } @else {
-      <p>No image</p>
+      <img src="assets/no-image.jpg" alt="" class="recipe-card__image" />
     }
+    <div class="recipe-card__header-container">
+      <div class="recipe-card__controls">
+        <button
+          mat-mini-fab
+          [matMenuTriggerFor]="menu"
+          aria-label="icon button which opens the menu"
+          color="primary"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openEditDialog()">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>image</mat-icon>
+            <span>Change image</span>
+          </button>
+          <button mat-menu-item (click)="openDeleteConfirmationDialog()">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <h1>{{ recipe()?.recipeName }}</h1>
     <hoa-recipes-ui-recipes-preparation-time
       [preparationTime]="recipe()?.preparationTime"
       [formatted]="true"

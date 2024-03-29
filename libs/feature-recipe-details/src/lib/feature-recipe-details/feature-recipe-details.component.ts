@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
   RecipeDto,
@@ -29,6 +30,7 @@ import { distinctUntilChanged } from 'rxjs';
     MatListModule,
     RouterModule,
     UiRecipesPreparationTimeComponent,
+    MatMenuModule,
   ],
   providers: [UiConfirmationDialogService],
   templateUrl: './feature-recipe-details.component.html',

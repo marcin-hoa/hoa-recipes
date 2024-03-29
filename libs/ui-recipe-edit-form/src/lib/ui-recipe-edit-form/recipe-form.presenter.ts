@@ -12,12 +12,10 @@ export type RecipeFormState = {
       ingredientQuantity: FormControl<string>;
     }>
   >;
-  imageName: FormControl<string>;
 };
 
 @Injectable()
 export class UiRecipeFormPresenter {
-  private _recipeImage?: File = undefined;
   private _form = new FormGroup({
     recipeName: new FormControl<string>('', {
       validators: [Validators.required, Validators.maxLength(30)],
@@ -25,9 +23,6 @@ export class UiRecipeFormPresenter {
     }),
     description: new FormControl<string>('', {
       validators: [Validators.maxLength(150)],
-      nonNullable: true,
-    }),
-    imageName: new FormControl<string>('', {
       nonNullable: true,
     }),
     preparationTime: new FormControl<number>(0, {
@@ -57,14 +52,6 @@ export class UiRecipeFormPresenter {
     });
   }
 
-  get recipeImage(): File | undefined {
-    return this._recipeImage;
-  }
-
-  set recipeImage(value: File) {
-    this._recipeImage = value;
-  }
-
   get form(): FormGroup<RecipeFormState> {
     return this._form;
   }
@@ -83,10 +70,6 @@ export class UiRecipeFormPresenter {
 
   get ingredientsFormArray(): FormArray<FormGroup> {
     return this._form.controls.ingredients;
-  }
-
-  get imageFormControl(): FormControl {
-    return this._form.controls.imageName;
   }
 
   addIngredientFormControl(): void {

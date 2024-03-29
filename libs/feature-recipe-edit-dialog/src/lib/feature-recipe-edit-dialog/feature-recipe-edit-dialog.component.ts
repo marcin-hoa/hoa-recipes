@@ -56,7 +56,10 @@ export class FeatureRecipeEditDialogComponent implements OnInit {
   constructor() {
     this.actions
       .pipe(
-        ofType(RecipesApiActions.createOrModifyRecipeSuccess),
+        ofType(
+          RecipesApiActions.createRecipeSuccess,
+          RecipesApiActions.editRecipeSuccess,
+        ),
         takeUntilDestroyed(),
       )
       .subscribe(() => {
@@ -77,14 +80,12 @@ export class FeatureRecipeEditDialogComponent implements OnInit {
       this.store.dispatch(
         RecipesUiActions.editRecipe({
           recipeDto: { ...formValue, id: this.dialogData?.id as string },
-          recipeImage: this.formPresenter.recipeImage,
         }),
       );
     } else {
       this.store.dispatch(
         RecipesUiActions.createRecipe({
-          recipeDto: { ...formValue, id: '' },
-          recipeImage: this.formPresenter.recipeImage,
+          recipeDto: { ...formValue },
         }),
       );
     }

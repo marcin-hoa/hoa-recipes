@@ -55,7 +55,5 @@ export class UiRecipeEditFormComponent {
 
     const file: File = target.files[0];
     this.imageName.set(file.name);
-    this.formPresenter.imageFormControl.setValue(file.name);
-    this.formPresenter.recipeImage = file;
   }
 }

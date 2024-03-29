@@ -35,27 +35,13 @@ const createRecipe$ = createEffect(
     return actions$.pipe(
       ofType(RecipesUiActions.createRecipe),
       exhaustMap((action) => {
-        const randomRecipeId = (Math.random() + 1).toString(36).substring(7);
-        const ext = action.recipeDto.imageName.split('.').splice(-1);
-        return repo
-          .create({
-            ...action.recipeDto,
-            id: randomRecipeId,
-            imageName: `${randomRecipeId}.${ext}`,
-          })
-          .pipe(
-            map((res) => {
-              return action.recipeImage === undefined
-                ? RecipesApiActions.createOrModifyRecipeSuccess({
-                    recipeDto: res,
-                  })
-                : RecipesUiActions.uploadRecipeImage({
-                    image: action.recipeImage,
-                    recipe: res,
-                    imageName: res.imageName,
-                  });
-            }),
-          );
+        return repo.create(action.recipeDto).pipe(
+          map((res) => {
+            return RecipesApiActions.createRecipeSuccess({
+              recipeDto: res,
+            });
+          }),
+        );
       }),
       catchError((error) => {
         console.error('Error', error);
@@ -75,15 +61,9 @@ const editRecipe$ = createEffect(
       exhaustMap((action) => {
         return repo.update(action.recipeDto).pipe(
           map((res) => {
-            return action.recipeImage === undefined
-              ? RecipesApiActions.createOrModifyRecipeSuccess({
-                  recipeDto: res,
-                })
-              : RecipesUiActions.uploadRecipeImage({
-                  image: action.recipeImage,
-                  recipe: res,
-                  imageName: res.imageName,
-                });
+            return RecipesApiActions.editRecipeSuccess({
+              recipeDto: res,
+            });
           }),
         );
       }),
@@ -128,11 +108,11 @@ const uploadRecipeImage$ = createEffect(
       ofType(RecipesUiActions.uploadRecipeImage),
       exhaustMap((action) => {
         return repo
-          .uploadImage(action.recipe.id, action.image, action.recipe.imageName)
+          .uploadImage(action.recipe.id, action.image, action.imageName)
           .pipe(
-            map(() => {
-              return RecipesApiActions.createOrModifyRecipeSuccess({
-                recipeDto: action.recipe,
+            map((res) => {
+              return RecipesApiActions.uploadRecipeImageSuccess({
+                fileName: res,
               });
             }),
           );
