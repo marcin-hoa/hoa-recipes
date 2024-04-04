@@ -38,7 +38,7 @@ const createRecipe$ = createEffect(
         return repo.create(action.recipeDto).pipe(
           map((res) => {
             return RecipesApiActions.createRecipeSuccess({
-              createdRecipe: res,
+              recipeDto: res,
             });
           }),
         );
@@ -62,7 +62,7 @@ const editRecipe$ = createEffect(
         return repo.update(action.recipeDto).pipe(
           map((res) => {
             return RecipesApiActions.editRecipeSuccess({
-              updatedRecipe: res,
+              recipeDto: res,
             });
           }),
         );
@@ -100,7 +100,63 @@ const deleteRecipe$ = createEffect(
   { functional: true },
 );
 
+const uploadRecipeImage$ = createEffect(
+  (actions$ = inject(Actions)) => {
+    const repo = inject(RecipesRepository);
+
+    return actions$.pipe(
+      ofType(RecipesUiActions.uploadRecipeImage),
+      exhaustMap((action) => {
+        const ext = action.image.name.split('.').splice(-1);
+        return repo
+          .uploadImage(action.image, `${action.recipe.id}.${ext}`)
+          .pipe(
+            map((res) => {
+              return RecipesApiActions.uploadRecipeImageSuccess({
+                fileName: res.fileName,
+              });
+            }),
+          );
+      }),
+      catchError((error) => {
+        console.error('Error', error);
+        return of(RecipesApiActions.uploadRecipeImageFailure({ error }));
+      }),
+    );
+  },
+  { functional: true },
+);
+
+const deleteRecipeImage$ = createEffect(
+  (actions$ = inject(Actions)) => {
+    const repo = inject(RecipesRepository);
+
+    return actions$.pipe(
+      ofType(RecipesUiActions.deleteRecipeImage),
+      exhaustMap((action) => {
+        return repo.deleteImage(action.fileName).pipe(
+          map(() => {
+            return RecipesApiActions.deleteRecipeImageSuccess();
+          }),
+        );
+      }),
+      catchError((error) => {
+        console.error('Error', error);
+        return of(RecipesApiActions.uploadRecipeImageFailure({ error }));
+      }),
+    );
+  },
+  { functional: true },
+);
+
 export const provideRecipeEffects = () =>
   makeEnvironmentProviders([
-    provideEffects({ loadAll$, createRecipe$, editRecipe$, deleteRecipe$ }),
+    provideEffects({
+      loadAll$,
+      createRecipe$,
+      editRecipe$,
+      deleteRecipe$,
+      uploadRecipeImage$,
+      deleteRecipeImage$,
+    }),
   ]);

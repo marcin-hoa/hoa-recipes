@@ -1,6 +1,4 @@
-export type CreateIngredientDto = {
+export type IngredientDto = {
   ingredientName: string;
   ingredientQuantity: string;
 };
-
-export type IngredientDto = CreateIngredientDto;

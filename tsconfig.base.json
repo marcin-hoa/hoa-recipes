@@ -42,6 +42,9 @@
       "@hoa-recipes/ui-confirmation-dialog": [
         "libs/ui-confirmation-dialog/src/index.ts"
       ],
+      "@hoa-recipes/ui-image-upload-dialog": [
+        "libs/ui-image-upload-dialog/src/index.ts"
+      ],
       "@hoa-recipes/ui-recipe-edit-form": [
         "libs/ui-recipe-edit-form/src/index.ts"
       ],

@@ -52,19 +52,16 @@ export const recipesReducer = createReducer<RecipesState>(
     selectedId,
   })),
 
-  on(RecipesApiActions.createRecipeSuccess, (state, { createdRecipe }) => {
-    return recipesAdapter.addOne(createdRecipe, {
-      ...state,
-      selectedId: createdRecipe.id,
-    });
-  }),
-
-  on(RecipesApiActions.editRecipeSuccess, (state, { updatedRecipe }) => {
-    return recipesAdapter.updateOne(
-      { id: updatedRecipe.id, changes: updatedRecipe },
-      state,
-    );
-  }),
+  on(
+    RecipesApiActions.createRecipeSuccess,
+    RecipesApiActions.editRecipeSuccess,
+    (state, { recipeDto }) => {
+      return recipesAdapter.upsertOne(recipeDto, {
+        ...state,
+        selectedId: recipeDto.id,
+      });
+    },
+  ),
 
   on(RecipesApiActions.deleteRecipeSuccess, (state, { recipeId }) => {
     return recipesAdapter.removeOne(recipeId, state);

@@ -10,13 +10,9 @@ import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogTitle,
+  MatDialogModule,
 } from '@angular/material/dialog';
 import {
-  CreateRecipeDto,
   RecipeDto,
   RecipesApiActions,
   RecipesUiActions,
@@ -32,10 +28,7 @@ import { Store } from '@ngrx/store';
   selector: 'hoa-recipes-feature-recipe-edit-dialog',
   standalone: true,
   imports: [
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-    MatDialogTitle,
+    MatDialogModule,
     MatButtonModule,
     UiRecipeEditFormComponent,
     ReactiveFormsModule,
@@ -70,7 +63,7 @@ export class FeatureRecipeEditDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isEditMode) {
-      this.formPresenter.setInitialData(this.dialogData as CreateRecipeDto);
+      this.formPresenter.setInitialData(this.dialogData as RecipeDto);
     }
   }
 
@@ -86,7 +79,7 @@ export class FeatureRecipeEditDialogComponent implements OnInit {
     } else {
       this.store.dispatch(
         RecipesUiActions.createRecipe({
-          recipeDto: formValue,
+          recipeDto: { ...formValue },
         }),
       );
     }

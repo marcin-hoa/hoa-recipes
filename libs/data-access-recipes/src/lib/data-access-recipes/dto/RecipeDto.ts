@@ -1,13 +1,13 @@
-import { CreateIngredientDto, IngredientDto } from './IngredientDto';
+import { IngredientDto } from './IngredientDto';
 
 export type CreateRecipeDto = {
   recipeName: string;
   preparationTime: number;
   description: string;
-  ingredients: CreateIngredientDto[];
+  ingredients: IngredientDto[];
+  imageName?: string;
 };
 
 export type RecipeDto = CreateRecipeDto & {
   id: string;
-  ingredients: IngredientDto[];
 };

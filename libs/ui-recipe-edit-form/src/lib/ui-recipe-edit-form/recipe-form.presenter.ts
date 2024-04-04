@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateRecipeDto } from '@hoa-recipes/data-access-recipes';
+import { RecipeDto } from '@hoa-recipes/data-access-recipes';
 
 export type RecipeFormState = {
   recipeName: FormControl<string>;
@@ -80,7 +80,7 @@ export class UiRecipeFormPresenter {
     this.ingredientsFormArray.removeAt(index);
   }
 
-  setInitialData(data: CreateRecipeDto): void {
+  setInitialData(data: RecipeDto): void {
     this._form.patchValue(data);
     this.ingredientsFormArray.clear();
 
