@@ -1,7 +1,16 @@
 .list {
-  width: 25vw;
+  width: 100%;
 }
 
 .title {
   text-decoration: none;
+
+  &--active {
+    background-color: #dadada;
+
+    &:focus,
+    :active {
+      background-color: transparent;
+    }
+  }
 }
